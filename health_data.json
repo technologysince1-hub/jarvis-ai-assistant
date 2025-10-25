@@ -1,0 +1,167 @@
+{
+  "water_intake": {
+    "daily_goal": 8,
+    "today": 500,
+    "last_reminder": null,
+    "history": [
+      {
+        "timestamp": "2025-10-25T09:22:54.423982",
+        "amount": 500
+      }
+    ]
+  },
+  "exercise": {
+    "sessions": [],
+    "weekly_goal": 5,
+    "current_week": 0
+  },
+  "calories": {
+    "daily_goal": 2000,
+    "today": 1975,
+    "foods": [
+      {
+        "timestamp": "2025-10-25T09:28:09.341462",
+        "food": "banana",
+        "quantity": 2,
+        "calories": 210
+      },
+      {
+        "timestamp": "2025-10-25T09:29:01.562828",
+        "food": "pizza",
+        "quantity": 1,
+        "calories": 285
+      },
+      {
+        "timestamp": "2025-10-25T09:30:47.550181",
+        "food": "sandwich",
+        "quantity": 1,
+        "calories": 350
+      },
+      {
+        "timestamp": "2025-10-25T09:31:00.845627",
+        "food": "chocolate cookies",
+        "quantity": 2,
+        "calories": 240
+      },
+      {
+        "timestamp": "2025-10-25T09:31:33.552552",
+        "food": "sushi roll",
+        "quantity": 1,
+        "calories": 200
+      },
+      {
+        "timestamp": "2025-10-25T11:17:36.246741",
+        "food": "apple",
+        "quantity": 2,
+        "calories": 190
+      },
+      {
+        "timestamp": "2025-10-25T11:20:06.493594",
+        "food": "cake",
+        "quantity": 1,
+        "calories": 250
+      },
+      {
+        "timestamp": "2025-10-25T11:20:09.358074",
+        "food": "pizza",
+        "quantity": 1,
+        "calories": 250
+      }
+    ],
+    "history": []
+  },
+  "sleep": {
+    "bedtime": "23:30",
+    "wake_time": "06:00",
+    "reminders": true,
+    "history": []
+  },
+  "stress": {
+    "levels": [
+      {
+        "timestamp": "2025-10-25T09:24:14.996847",
+        "level": 5
+      },
+      {
+        "timestamp": "2025-10-25T09:42:37.484907",
+        "level": 8,
+        "cause": "public speaking anxiety",
+        "ai_recommendation": "Practice positive self-talk to boost confidence and consider reviewing presentation notes until you feel more comfortable."
+      }
+    ],
+    "last_check": "2025-10-25T09:42:37.484907",
+    "weekly_average": 6.5
+  },
+  "mood": {
+    "entries": [
+      {
+        "timestamp": "2025-10-25T09:49:18.919089",
+        "score": 9,
+        "emotion": "happy",
+        "trigger": "overall positive emotional state",
+        "suggestion": "Do something that amplifies this feeling, like engaging in a fun activity."
+      },
+      {
+        "timestamp": "2025-10-25T09:51:31.438105",
+        "score": 9,
+        "emotion": "happy",
+        "trigger": "positive state of mind",
+        "suggestion": "Indulge in activities that reinforce happiness"
+      }
+    ],
+    "weekly_average": 9.0,
+    "last_check": "2025-10-25T09:51:31.438105"
+  },
+  "heart_rate": {
+    "readings": [
+      {
+        "timestamp": "2025-10-25T09:49:22.467175",
+        "bpm": 75,
+        "type": "manual"
+      },
+      {
+        "timestamp": "2025-10-25T09:51:32.894945",
+        "bpm": 75,
+        "type": "manual"
+      },
+      {
+        "timestamp": "2025-10-25T09:51:34.455896",
+        "bpm": 75,
+        "type": "manual"
+      }
+    ],
+    "resting_hr": 75,
+    "last_check": "2025-10-25T09:51:34.455896"
+  },
+  "medications": {
+    "pills": [],
+    "reminders": []
+  },
+  "bmi": {
+    "height": 175.0,
+    "weight": 70.0,
+    "history": [
+      {
+        "timestamp": "2025-10-25T09:49:22.484081",
+        "bmi": 22.9,
+        "weight": 70.0,
+        "height": 175.0,
+        "category": "Normal weight"
+      },
+      {
+        "timestamp": "2025-10-25T09:51:32.913263",
+        "bmi": 22.9,
+        "weight": 70.0,
+        "height": 175.0,
+        "category": "Normal weight"
+      },
+      {
+        "timestamp": "2025-10-25T09:51:34.493559",
+        "bmi": 22.9,
+        "weight": 70.0,
+        "height": 175.0,
+        "category": "Normal weight"
+      }
+    ]
+  }
+}

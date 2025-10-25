@@ -1,0 +1,14 @@
+{
+  "actions": [
+    {
+      "action": "calculator",
+      "count": 9,
+      "last_used": "2025-10-02T10:25:30.285874",
+      "context": {
+        "day": "Thursday",
+        "hour": 10,
+        "time_of_day": "morning"
+      }
+    }
+  ]
+}

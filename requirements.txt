@@ -1,0 +1,49 @@
+# Core Dependencies
+eel
+pyttsx3
+speechrecognition
+playsound==1.2.2
+psutil
+
+# Audio Processing
+pyaudio
+pvporcupine
+gtts
+pygame
+wave
+speechrecognition
+
+# Computer Vision & Face Recognition
+opencv-contrib-python
+numpy
+opencv-python
+
+# GUI Automation
+pyautogui
+
+# Web Automation
+pywhatkit
+
+# AI/ML Libraries
+hugchat
+google-generativeai
+groq
+
+# Utilities
+requests
+urllib3
+pillow
+
+# Built-in modules (no installation needed)
+# multiprocessing
+# subprocess
+# time
+# sys
+# os
+# re
+# sqlite3
+# struct
+# webbrowser
+# json
+# datetime
+# csv
