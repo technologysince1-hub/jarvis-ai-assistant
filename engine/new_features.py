@@ -4333,6 +4333,14 @@ Make it comprehensive and logical!'''
                     result = subprocess.run(['git', 'push'], capture_output=True, text=True, check=True)
                     return f"Git push successful\n{result.stdout}"
                 except subprocess.CalledProcessError as e:
+                    # Try with upstream setup if no upstream branch
+                    if "no upstream branch" in e.stderr:
+                        try:
+                            result = subprocess.run(['git', 'push', '--set-upstream', 'origin', 'main'], 
+                                                  capture_output=True, text=True, check=True)
+                            return f"Git push successful (upstream set)\n{result.stdout}"
+                        except subprocess.CalledProcessError as e2:
+                            return f"Git push failed: {e2.stderr}"
                     return f"Git push failed: {e.stderr}"
             
             # Git status
