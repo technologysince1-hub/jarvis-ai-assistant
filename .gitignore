@@ -258,6 +258,9 @@ models/
 *.pickle
 ai_models/
 trained_models/
+*.yml
+trainer.yml
+engine/auth/trainer/trainer.yml
 
 # Memory and State Files
 memory_state.json
