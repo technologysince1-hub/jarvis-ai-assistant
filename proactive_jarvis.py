@@ -17,7 +17,7 @@ class ProactiveJarvis:
         self.running = True
         self.thread = threading.Thread(target=self._proactive_loop, daemon=True)
         self.thread.start()
-        print("🤖 Proactive Jarvis started! Will suggest actions automatically.")
+        print("Proactive Jarvis started! Will suggest actions automatically.")
     
     def stop_proactive_mode(self):
         """Stop proactive suggestions"""
@@ -42,13 +42,13 @@ class ProactiveJarvis:
                     # Check for suggestions
                     suggestion_result = voice_advanced_ai.check_proactive_suggestions()
                     if "Suggested:" in suggestion_result:
-                        print(f"✨ {suggestion_result}")
+                        print(f"SUGGESTION: {suggestion_result}")
                     
                     # Check for high-confidence auto-execution
                     try:
                         auto_result = voice_advanced_ai.auto_execute_if_confident()
                         if "Auto-executed:" in auto_result:
-                            print(f"🚀 {auto_result}")
+                            print(f"AUTO-EXECUTED: {auto_result}")
                     except:
                         pass  # Method may not exist
                 

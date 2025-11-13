@@ -5,7 +5,15 @@ import sys
 import threading
 from datetime import datetime
 #python -c "from engine.dual_ai import get_simple_response; result = get_simple_response('trivia game'); print(result)"
-# To run Jarvis
+
+#  python -c "from engine.command import allCommands; allCommands('open notepad')"
+
+# Method 1 (Step by step):
+#   1. Say: 'send message to akshay'
+#   2. When asked mode, say: 'whatsapp'
+#   3. When asked message, say: 'your message'
+
+#  Method 1: Say 'phone call to akshay' -> choose 'whatsapp'
 def startJarvis():
     try:
         from main import start

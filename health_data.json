@@ -17,7 +17,7 @@
   },
   "calories": {
     "daily_goal": 2000,
-    "today": 1975,
+    "today": 4235,
     "foods": [
       {
         "timestamp": "2025-10-25T09:28:09.341462",
@@ -66,6 +66,66 @@
         "food": "pizza",
         "quantity": 1,
         "calories": 250
+      },
+      {
+        "timestamp": "2025-10-25T15:02:46.019873",
+        "food": "food",
+        "quantity": 50,
+        "calories": 100
+      },
+      {
+        "timestamp": "2025-10-25T15:04:14.307163",
+        "food": "miscellaneous food items",
+        "quantity": 1,
+        "calories": 50
+      },
+      {
+        "timestamp": "2025-10-25T17:01:14.240206",
+        "food": "cake",
+        "quantity": 1,
+        "calories": 250
+      },
+      {
+        "timestamp": "2025-10-25T17:45:06.255877",
+        "food": "cake",
+        "quantity": 1,
+        "calories": 350
+      },
+      {
+        "timestamp": "2025-10-25T17:49:08.869568",
+        "food": "cake",
+        "quantity": 1,
+        "calories": 250
+      },
+      {
+        "timestamp": "2025-10-25T21:25:02.170331",
+        "food": "cake",
+        "quantity": 1,
+        "calories": 250
+      },
+      {
+        "timestamp": "2025-10-25T21:36:04.746788",
+        "food": "foodcake",
+        "quantity": 1,
+        "calories": 350
+      },
+      {
+        "timestamp": "2025-10-25T21:36:10.838011",
+        "food": "cake",
+        "quantity": 1,
+        "calories": 240
+      },
+      {
+        "timestamp": "2025-10-25T21:36:16.317087",
+        "food": "cake",
+        "quantity": 1,
+        "calories": 250
+      },
+      {
+        "timestamp": "2025-10-26T09:40:25.053345",
+        "food": "milk",
+        "quantity": 1,
+        "calories": 170
       }
     ],
     "history": []
@@ -107,10 +167,17 @@
         "emotion": "happy",
         "trigger": "positive state of mind",
         "suggestion": "Indulge in activities that reinforce happiness"
+      },
+      {
+        "timestamp": "2025-10-26T14:47:23.772910",
+        "score": 3,
+        "emotion": "depressed",
+        "trigger": "possibly relationship issues or lack of connection/companionship",
+        "suggestion": "Open up to Jarvis about your feelings or reach out to a trusted friend or family member for support and companionship."
       }
     ],
-    "weekly_average": 9.0,
-    "last_check": "2025-10-25T09:51:31.438105"
+    "weekly_average": 7.0,
+    "last_check": "2025-10-26T14:47:23.772910"
   },
   "heart_rate": {
     "readings": [

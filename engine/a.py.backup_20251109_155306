@@ -1,0 +1,13 @@
+a = input("Enter first number: ")
+b = input("Enter second number: ")
+c = input("Enter third number: ")
+
+try:
+    a = float(a)
+    b = float(b)
+    c = float(c)
+except ValueError:
+    print("Invalid input. Please enter a number.")
+else:
+    total_sum = a + b + c
+    print("The sum is:", total_sum)

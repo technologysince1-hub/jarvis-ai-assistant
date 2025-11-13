@@ -13,6 +13,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from engine.features import *
 from engine.command import *
 from engine.auth import recoganize
+from engine.system_monitor import getSystemStats
+import json
+
 # Fingerprint authentication using ADB
 import subprocess
 import hashlib
@@ -82,6 +85,33 @@ def AuthenticateFingerprint():
         return False
 from engine.voice_advanced_ai import voice_advanced_ai
 
+def get_context_aware_greeting(user_id=None):
+    """Generate context-aware greeting with user name"""
+    from datetime import datetime
+    import json
+    
+    current_hour = datetime.now().hour
+    
+    if 5 <= current_hour < 12:
+        time_greeting = "Good Morning"
+    elif 12 <= current_hour < 17:
+        time_greeting = "Good Afternoon"
+    elif 17 <= current_hour < 21:
+        time_greeting = "Good Evening"
+    else:
+        time_greeting = "Good Night"
+    
+    # Get user name from database
+    name = "Sir"
+    if user_id:
+        try:
+            with open('users.json', 'r') as f:
+                users = json.load(f)
+                name = users.get(str(user_id), "Sir")
+        except:
+            pass
+    
+    return f"{time_greeting} {name}, Welcome! How can I help you today?"
 
 def start():
     
@@ -443,8 +473,8 @@ def start():
     @eel.expose
     def startContinuousListen():
         try:
-            from engine.dual_ai import dual_ai
-            result = dual_ai._start_continuous_listen()
+            from engine.command import start_continuous_listen
+            result = start_continuous_listen()
             return result
         except Exception as e:
             return f"Error: {str(e)}"
@@ -452,8 +482,8 @@ def start():
     @eel.expose
     def stopContinuousListen():
         try:
-            from engine.dual_ai import dual_ai
-            result = dual_ai._stop_continuous_listen()
+            from engine.command import stop_continuous_listen
+            result = stop_continuous_listen()
             return result
         except Exception as e:
             return f"Error: {str(e)}"
@@ -461,11 +491,96 @@ def start():
     @eel.expose
     def getContinuousListenStatus():
         try:
-            from engine.dual_ai import dual_ai
-            result = dual_ai._get_continuous_listen_status()
+            from engine.command import get_continuous_listen_status
+            result = get_continuous_listen_status()
             return result
         except Exception as e:
             return f"Error: {str(e)}"
+    
+    @eel.expose
+    def enableEmotionDetection():
+        try:
+            from engine.command import emotion_system
+            result = emotion_system.enable()
+            return result
+        except Exception as e:
+            return f"Error: {e}"
+    
+    @eel.expose
+    def disableEmotionDetection():
+        try:
+            from engine.command import emotion_system
+            result = emotion_system.disable()
+            return result
+        except Exception as e:
+            return f"Error: {e}"
+    
+    @eel.expose
+    def getEmotionStatus():
+        try:
+            from engine.command import emotion_system
+            return emotion_system.get_status()
+        except Exception as e:
+            return "Error"
+    
+    @eel.expose
+    def getCommandHistory():
+        try:
+            from engine.command_history import command_history
+            return command_history.get_recent_commands(20)
+        except Exception as e:
+            return []
+    
+    @eel.expose
+    def clearCommandHistory():
+        try:
+            from engine.command_history import command_history
+            command_history.clear_history()
+            return "Command history cleared"
+        except Exception as e:
+            return f"Error: {e}"
+    
+    @eel.expose
+    def searchCommands(query="", date_filter="", input_type=""):
+        try:
+            from engine.command_history import command_history
+            return command_history.search_commands(query, date_filter, input_type)
+        except Exception as e:
+            return []
+    
+    @eel.expose
+    def getCommandStatistics():
+        try:
+            from engine.command_history import command_history
+            return command_history.get_statistics()
+        except Exception as e:
+            return {"total": 0, "voice": 0, "text": 0, "most_used": [], "success_rate": 0}
+    
+    @eel.expose
+    def getAuthenticatedUserName(user_id):
+        """Get user name from users.json based on authenticated user ID"""
+        try:
+            with open('users.json', 'r') as f:
+                users = json.load(f)
+                return users.get(str(user_id), "Sir")
+        except Exception as e:
+            print(f"Error getting user name: {e}")
+            return "Sir"
+    
+    @eel.expose
+    def getUserName():
+        """Get current user name (fallback function)"""
+        try:
+            # Try to get the most recent user from users.json
+            with open('users.json', 'r') as f:
+                users = json.load(f)
+                if users:
+                    # Return the last added user
+                    last_id = max(users.keys(), key=int)
+                    return users[last_id]
+        except Exception as e:
+            print(f"Error getting user name: {e}")
+        return "Sir"
     
 
     
@@ -532,6 +647,9 @@ def start():
             if ui_config.get('call_notifications') == 'enabled':
                 from engine.phone_advanced import phone_advanced
                 phone_advanced.start_call_monitoring()
+            
+            # Don't auto-start emotion detection - let user control it
+                
         except Exception as e:
             print(f"UI settings load error: {e}")
         
@@ -554,9 +672,14 @@ def start():
         fingerprint_passed = False
         
         # Face authentication
+        authenticated_user_id = None
         if face_enabled:
             speak("Ready for Face Authentication")
-            flag = recoganize.AuthenticateFace()
+            result = recoganize.AuthenticateFace()
+            if isinstance(result, tuple):
+                flag, authenticated_user_id = result
+            else:
+                flag = result
             if flag == 1:
                 face_passed = True
                 speak("Face Authentication Successful")
@@ -595,7 +718,18 @@ def start():
         if success:
             eel.hideFaceAuth()
             eel.hideFaceAuthSuccess()
-            speak("Hello, Welcome Sir, How can i Help You")
+            
+            # Update UI with authenticated user name
+            if authenticated_user_id:
+                try:
+                    eel.updateUserAfterAuth(authenticated_user_id)
+                except:
+                    pass
+            
+            # Don't auto-start emotion detection - let user control it
+            greeting = get_context_aware_greeting(authenticated_user_id)
+            
+            speak(greeting)
             eel.hideStart()
             playAssistantSound()
         else:

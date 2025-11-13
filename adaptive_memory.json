@@ -9,6 +9,56 @@
         "hour": 10,
         "time_of_day": "morning"
       }
+    },
+    {
+      "action": "test_action",
+      "count": 1,
+      "last_used": "2025-10-26T16:02:12.163460",
+      "context": {
+        "day": "Sunday",
+        "hour": 16,
+        "time_of_day": "afternoon"
+      }
+    },
+    {
+      "action": "daily_briefing",
+      "count": 1,
+      "last_used": "2025-10-26T16:02:12.203003",
+      "context": {
+        "day": "Sunday",
+        "hour": 16,
+        "time_of_day": "afternoon"
+      }
+    },
+    {
+      "action": "system_monitor",
+      "count": 1,
+      "last_used": "2025-10-26T16:02:12.215900",
+      "context": {
+        "day": "Sunday",
+        "hour": 16,
+        "time_of_day": "afternoon"
+      }
+    },
+    {
+      "action": "email_summarize",
+      "count": 1,
+      "last_used": "2025-10-26T16:02:12.220961",
+      "context": {
+        "day": "Sunday",
+        "hour": 16,
+        "time_of_day": "afternoon"
+      }
+    },
+    {
+      "action": "general_action",
+      "count": 1,
+      "last_used": "2025-11-10T23:35:57.362593",
+      "context": {
+        "day": "Monday",
+        "hour": 23,
+        "time_of_day": "evening"
+      }
     }
   ]
 }

@@ -1,0 +1,10 @@
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
+
+sum_of_numbers = a + b + c  # Added 'c' to the expression
+print("The sum is: " + str(sum_of_numbers))
+
+# Renamed the variable to avoid using a reserved keyword
+total = a + b + c  # Renamed 'sum' to 'total'
+print("The sum is: " + str(total))

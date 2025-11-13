@@ -8,6 +8,8 @@ import time
 import webbrowser
 from playsound import playsound
 import eel
+import threading
+from datetime import datetime, timedelta
 try:
     import pyaudio
     PYAUDIO_AVAILABLE = True
@@ -291,28 +293,35 @@ def hotword():
 
 # find contacts from database
 def findContact(query):
-    
-    words_to_remove = [ASSISTANT_NAME, 'make', 'a', 'to', 'phone', 'call', 'send', 'message', 'wahtsapp', 'video']
-    query = remove_words(query, words_to_remove)
-    
     try:
-        query = query.strip().lower()
-        print(f"Searching for: {query}")
+        # First extract contact name by removing scheduling patterns
+        import re
         
-        # Search in database
-        cursor.execute("SELECT mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ?", ('%' + query + '%', query + '%'))
+        # Remove scheduling patterns like "in 30 seconds" first
+        query = re.sub(r'\s+in\s+\d+\s*(?:second|minute|hour|sec|min|hr)s?', '', query)
+        
+        # Then remove other words
+        words_to_remove = [ASSISTANT_NAME, 'make', 'a', 'to', 'phone', 'call', 'send', 'message', 'wahtsapp', 'video']
+        query = remove_words(query, words_to_remove)
+        
+        query = query.strip().lower()
+        print(f"Searching for: '{query}'")
+        
+        # Search in database with multiple patterns
+        cursor.execute("SELECT name, mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ? OR LOWER(name) = ?", ('%' + query + '%', query + '%', query))
         results = cursor.fetchall()
         
         if results:
-            mobile_number_str = str(results[0][0])
-            print(f"Found contact: {query} - {mobile_number_str}")
+            contact_name = results[0][0]
+            mobile_number_str = str(results[0][1])
+            print(f"Found contact: {contact_name} - {mobile_number_str}")
             
             if not mobile_number_str.startswith('+91') and len(mobile_number_str) == 10:
                 mobile_number_str = '+91' + mobile_number_str
             
-            return mobile_number_str, query
+            return mobile_number_str, contact_name
         else:
-            print(f"Contact {query} not found in database")
+            print(f"Contact '{query}' not found in database")
             speak('Contact not found. Please add contact first')
             return 0, 0
             
@@ -321,16 +330,25 @@ def findContact(query):
         speak('Error finding contact')
         return 0, 0
     
-def whatsApp(mobile_no, message, flag, name):
+def whatsApp(mobile_no, message, flag, name, schedule_time=None):
     
     if flag == 'message':
-        jarvis_message = "message send successfully to "+name
+        if schedule_time:
+            jarvis_message = f"message scheduled for {name} at {schedule_time}"
+        else:
+            jarvis_message = "message send successfully to "+name
     elif flag == 'call':
         message = ''
         jarvis_message = "calling to "+name
     else:
         message = ''
         jarvis_message = "starting video call with "+name
+    
+    # If scheduled, set up timer
+    if schedule_time and flag == 'message':
+        schedule_whatsapp_message(mobile_no, message, name, schedule_time)
+        speak(jarvis_message)
+        return
 
     try:
         # Clean mobile number
@@ -372,7 +390,7 @@ def whatsApp(mobile_no, message, flag, name):
                 if PYAUTOGUI_AVAILABLE:
                     try:
                         # Press Tab multiple times to navigate to call button
-                        for i in range(5):
+                        for i in range(11):
                             pyautogui.press('tab')
                             time.sleep(0.5)
                         
@@ -411,8 +429,11 @@ def whatsApp(mobile_no, message, flag, name):
                 if PYAUTOGUI_AVAILABLE:
                     try:
                         # Try Ctrl+Shift+V for video call (common shortcut)
-                        pyautogui.hotkey('ctrl', 'shift', 'v')
-                        time.sleep(1)
+                        for i in range(10):
+                            pyautogui.press('tab')
+                            time.sleep(0.5)
+                            pyautogui.press('enter')
+                            time.sleep(1)
                         speak(f"Starting video call with {name} on WhatsApp")
                         return
                     except:
@@ -456,6 +477,81 @@ def whatsApp(mobile_no, message, flag, name):
     except Exception as e:
         print(f"WhatsApp error: {e}")
         speak(f"WhatsApp opened for {name}, please call manually")
+
+def schedule_whatsapp_message(mobile_no, message, name, schedule_time):
+    """Schedule WhatsApp message to be sent at specified time"""
+    try:
+        # Parse schedule time
+        delay_seconds = parse_schedule_time(schedule_time)
+        if delay_seconds <= 0:
+            speak("Invalid time format")
+            return
+        
+        # Schedule the message
+        timer = threading.Timer(delay_seconds, send_scheduled_whatsapp, [mobile_no, message, name])
+        timer.start()
+        
+        print(f"Message scheduled for {name} in {delay_seconds} seconds")
+        
+    except Exception as e:
+        print(f"Schedule error: {e}")
+        speak("Failed to schedule message")
+
+def parse_schedule_time(time_str):
+    """Parse time string and return delay in seconds"""
+    time_str = time_str.lower().strip()
+    
+    # Handle formats like "5 seconds", "2 minutes", "1 hour"
+    import re
+    
+    # Extract number and unit
+    match = re.search(r'(\d+)\s*(second|minute|hour|sec|min|hr)s?', time_str)
+    if match:
+        number = int(match.group(1))
+        unit = match.group(2)
+        
+        if unit in ['second', 'sec']:
+            return number
+        elif unit in ['minute', 'min']:
+            return number * 60
+        elif unit in ['hour', 'hr']:
+            return number * 3600
+    
+    # Handle "in X format"
+    if 'in' in time_str:
+        time_str = time_str.replace('in', '').strip()
+        return parse_schedule_time(time_str)
+    
+    return 0
+
+def send_scheduled_whatsapp(mobile_no, message, name):
+    """Send the scheduled WhatsApp message"""
+    try:
+        speak(f"Sending scheduled message to {name}")
+        
+        # Clean mobile number
+        clean_number = mobile_no.replace(" ", "").replace("-", "").replace("+91", "")
+        
+        # WhatsApp message - simple URL method
+        encoded_message = quote(message)
+        whatsapp_url = f"whatsapp://send?phone=91{clean_number}&text={encoded_message}"
+        subprocess.run(f'start "" "{whatsapp_url}"', shell=True)
+        time.sleep(4)
+        
+        # Simple automation - just press Enter to send
+        if PYAUTOGUI_AVAILABLE:
+            try:
+                pyautogui.press('enter')
+                time.sleep(0.5)
+                pyautogui.press('enter')  # Try twice in case first doesn't work
+                speak(f"Scheduled message sent to {name}")
+            except Exception as e:
+                print(f"Send failed: {e}")
+                speak(f"Scheduled message prepared for {name}. Please press Enter to send.")
+        
+    except Exception as e:
+        print(f"Scheduled WhatsApp error: {e}")
+        speak(f"Failed to send scheduled message to {name}")
 
 # chat bot 
 def chatBot(query):

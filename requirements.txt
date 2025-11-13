@@ -1,49 +1,41 @@
 # Core Dependencies
-eel
-pyttsx3
-speechrecognition
-playsound==1.2.2
-psutil
+pyttsx3==2.90
+speechrecognition==3.10.0
+pyaudio==0.2.11
+requests==2.31.0
+PyQt5==5.15.9
+eel==0.16.0
 
-# Audio Processing
-pyaudio
-pvporcupine
-gtts
-pygame
-wave
-speechrecognition
+# AI & Machine Learning
+groq==0.4.1
+google-generativeai==0.3.2
+transformers==4.35.2
+torch==2.1.1
+numpy==1.24.3
 
-# Computer Vision & Face Recognition
-opencv-contrib-python
-numpy
-opencv-python
+# Computer Vision
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
+pillow==10.1.0
 
-# GUI Automation
-pyautogui
+# System Integration
+psutil==5.9.6
+pyautogui==0.9.54
+schedule==1.2.0
+cryptography==41.0.7
 
-# Web Automation
-pywhatkit
+# Additional Features
+pywhatkit==5.4
+qrcode==7.4.2
+matplotlib==3.8.2
+pygame==2.5.2
+gtts==2.4.0
 
-# AI/ML Libraries
-hugchat
-google-generativeai
-groq
+# Optional Dependencies
+pvporcupine==3.0.0
+hugchat==0.3.4
 
-# Utilities
-requests
-urllib3
-pillow
-
-# Built-in modules (no installation needed)
-# multiprocessing
-# subprocess
-# time
-# sys
-# os
-# re
-# sqlite3
-# struct
-# webbrowser
-# json
-# datetime
-# csv
+# Development Dependencies
+pytest==7.4.3
+black==23.11.0
+flake8==6.1.0

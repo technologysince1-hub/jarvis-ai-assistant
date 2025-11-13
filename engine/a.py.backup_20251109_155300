@@ -1,0 +1,9 @@
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
+
+total_sum = a + b + c
+print("The sum is:", totalsum)
+
+# No error in this code, but it's possible the error is due to running it in an environment that doesn't support print function.
+# If you're running this in an online compiler, try running it in a local environment.

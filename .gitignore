@@ -1,18 +1,29 @@
-# API Keys and Secrets
-engine/groq_config.py
-*.key
-passwords.json
-password_key.key
-
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
-env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
 venv/
-.venv/
+env/
+ENV/
 
 # IDE
 .vscode/
@@ -23,3 +34,37 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# API Keys & Config
+*_config.py
+*.key
+api_keys.txt
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Media Files
+*.mp4
+*.avi
+*.wav
+*.mp3
+screenshots/
+recordings/
+
+# Personal Data
+passwords.json
+users.json
+jarvis_memory.json
+face_samples/
+upload_photos/
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+cache/

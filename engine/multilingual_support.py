@@ -250,6 +250,19 @@ class MultilingualJarvis:
         """Get language code for text-to-speech"""
         return self.supported_languages.get(self.current_language, {}).get('tts_code', 'en')
     
+    def set_language(self, language):
+        """Set the current language"""
+        if language in self.supported_languages:
+            self.current_language = language
+            # Save to file
+            try:
+                with open('current_language.txt', 'w') as f:
+                    f.write(language)
+                return True
+            except:
+                return False
+        return False
+    
     def speak_multilingual(self, text, language=None):
         """Return text for main system to handle TTS"""
         # Don't speak here - let main system handle TTS

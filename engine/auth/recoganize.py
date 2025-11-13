@@ -1,217 +1,143 @@
-from sys import flags
+import cv2
 import time
 import os
-try:
-    import cv2
-    CV2_AVAILABLE = True
-except ImportError:
-    print("OpenCV not available due to NumPy compatibility issues")
-    CV2_AVAILABLE = False
-try:
-    import pyautogui as p
-except ImportError:
-    print("PyAutoGUI not available")
-    p = None
+import numpy as np
 
+# REQUIREMENTS:
+# - Trained ID: 1 (Primary authenticated user)
+# - Accept IDs: 5, 20 for authentication
+# - Available sample IDs: 21, 22 (not trained yet)
 
 def AuthenticateFace():
+    trainer_path = 'engine/auth/trainer/trainer.yml'
+    cascadePath = "engine/auth/haarcascade_frontalface_default.xml"
 
-    flag = ""
-    if not CV2_AVAILABLE:
-        print("OpenCV not available due to NumPy compatibility issues. Skipping face authentication.")
-        return 1  # Skip face auth if OpenCV not available
-    
-    try:
-        # Local Binary Patterns Histograms
-        recognizer = cv2.face.LBPHFaceRecognizer_create()
-    except AttributeError:
-        print("OpenCV face module not available. Install opencv-contrib-python")
-        return 1  # Skip face auth if module not available
-
-    # Check if trainer file exists
-    trainer_path = 'engine\\auth\\trainer\\trainer.yml'
     if not os.path.exists(trainer_path):
-        print(f"Trainer file not found: {trainer_path}")
-        print("Please train the face recognition model first")
-        return 1
-    
-    try:
-        recognizer.read(trainer_path)  # load trained model
-    except Exception as e:
-        print(f"Failed to load trainer model: {e}")
-        return 1
-    
-    cascadePath = "engine\\auth\\haarcascade_frontalface_default.xml"
+        print("Trainer file not found. Train first.")
+        return 0, None
+
     if not os.path.exists(cascadePath):
-        print(f"Cascade file not found: {cascadePath}")
-        return 1
-    
-    # initializing haar cascade for object detection approach
+        print("Cascade file missing.")
+        return 0, None
+
+    recognizer = cv2.face.LBPHFaceRecognizer_create()
+    recognizer.read(trainer_path)
     faceCascade = cv2.CascadeClassifier(cascadePath)
-    if faceCascade.empty():
-        print("Failed to load face cascade classifier")
-        return 1
-
-    font = cv2.FONT_HERSHEY_SIMPLEX  # denotes the font type
-
-
-    id = 2  # number of persons you want to Recognize
-
-
-    names = ['Unknown', 'User']  # names, leave first empty bcz counter starts from 0
-
-
-    # Try multiple camera initialization methods
-    cam = None
-    for camera_index in [0, 1, 2]:
-        try:
-            # Try with DirectShow backend first (Windows)
-            cam = cv2.VideoCapture(camera_index, cv2.CAP_DSHOW)
-            if cam.isOpened():
-                ret, test_frame = cam.read()
-                if ret:
-                    print(f"Camera {camera_index} opened successfully with DSHOW")
-                    break
-                else:
-                    cam.release()
-            
-            # Try without backend
-            cam = cv2.VideoCapture(camera_index)
-            if cam.isOpened():
-                ret, test_frame = cam.read()
-                if ret:
-                    print(f"Camera {camera_index} opened successfully")
-                    break
-                else:
-                    cam.release()
-                    
-        except Exception as e:
-            print(f"Camera {camera_index} error: {e}")
-            if cam:
-                cam.release()
-            cam = None
     
-    if not cam or not cam.isOpened():
-        print("No camera available. Skipping face authentication.")
-        return 1  # Skip face auth if no camera
+    cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    cam.set(3, 640)
+    cam.set(4, 480)
     
-    # Set camera properties
-    cam.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-    cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-    cam.set(cv2.CAP_PROP_FPS, 30)
-
-    # Define min window size to be recognized as a face
-    minW = 0.1*cam.get(3)
-    minH = 0.1*cam.get(4)
-
-    # Balanced security variables
-    recognition_count = 0
-    required_recognitions = 2  # Need 2 successful recognitions
-    max_attempts = 100  # Reasonable attempts
-    attempt_count = 0
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    match_count = 0
+    required_matches = 3
     
-    # Extended timeout for security
+    # Advanced lighting adaptation
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+    
     start_time = time.time()
-    timeout = 30  # 30 seconds timeout
-
+    
     while True:
-        ret, img = cam.read()
+        ret, frame = cam.read()
         if not ret:
-            print("Failed to read from camera")
-            time.sleep(0.1)
             continue
             
-        attempt_count += 1
+        # Multi-stage preprocessing for any lighting
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         
-        # Auto-close after timeout
-        if time.time() - start_time > timeout:
-            print("Face authentication timeout")
-            flag = 0
-            break
-
-        # Enhanced image preprocessing for better recognition
-        converted_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        # Apply histogram equalization for better lighting conditions
-        converted_image = cv2.equalizeHist(converted_image)
-
-        # Improved face detection parameters
-        faces = faceCascade.detectMultiScale(
-            converted_image,
-            scaleFactor=1.05,
-            minNeighbors=3,
-            minSize=(30, 30),
-            maxSize=(300, 300),
-            flags=cv2.CASCADE_SCALE_IMAGE
-        )
-
-        for(x, y, w, h) in faces:
-            cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
-            # Extract face region with padding for better recognition
-            face_roi = converted_image[y:y+h, x:x+w]
-            
-            # Resize face for consistent recognition
-            face_roi = cv2.resize(face_roi, (100, 100))
-            
-            # Predict with improved face region
-            id, confidence = recognizer.predict(face_roi)
-
-            # Improved confidence threshold
-            if confidence < 85:  # More lenient for better detection
-                # Safe array access
-                if id < len(names):
-                    recognized_name = names[id]
-                else:
-                    recognized_name = "User"
-                    
-                accuracy = "{0}%".format(round(100 - confidence))
-                recognition_count += 1
-                
-                # Display success indicator
-                cv2.putText(img, f"Recognized: {recognition_count}/{required_recognitions}", 
-                           (10, 30), font, 0.7, (0, 255, 0), 2)
-                
-                # Success after multiple recognitions
-                if recognition_count >= required_recognitions:
-                    flag = 1
+        # Adaptive lighting correction
+        mean_brightness = np.mean(gray)
+        if mean_brightness < 80:  # Dark
+            gray = cv2.convertScaleAbs(gray, alpha=1.5, beta=30)
+        elif mean_brightness > 180:  # Bright
+            gray = cv2.convertScaleAbs(gray, alpha=0.7, beta=-20)
+        
+        # Apply CLAHE for local contrast
+        gray = clahe.apply(gray)
+        
+        # Gaussian blur for noise reduction
+        gray = cv2.GaussianBlur(gray, (3, 3), 0)
+        
+        # Multi-scale face detection
+        faces1 = faceCascade.detectMultiScale(gray, 1.1, 4, minSize=(60, 60))
+        faces2 = faceCascade.detectMultiScale(gray, 1.05, 3, minSize=(50, 50))
+        
+        # Combine detections
+        all_faces = list(faces1) + list(faces2)
+        faces = []
+        
+        # Remove duplicates
+        for face in all_faces:
+            x, y, w, h = face
+            is_duplicate = False
+            for existing in faces:
+                ex, ey, ew, eh = existing
+                if abs(x - ex) < 30 and abs(y - ey) < 30:
+                    is_duplicate = True
                     break
+            if not is_duplicate and w > 50 and h > 50:
+                faces.append(face)
+        
+        name = "Unknown"
+        confidence_txt = "0%"
+        
+        for (x, y, w, h) in faces:
+            roi_gray = gray[y:y+h, x:x+w]
+            
+            # Multiple size processing for robustness
+            sizes = [100, 120, 150]
+            predictions = []
+            
+            for size in sizes:
+                resized_roi = cv2.resize(roi_gray, (size, size))
+                # Additional preprocessing
+                resized_roi = cv2.equalizeHist(resized_roi)
+                
+                id_pred, conf = recognizer.predict(resized_roi)
+                predictions.append((id_pred, conf))
+            
+            # Get best prediction
+            best_pred = min(predictions, key=lambda x: x[1])
+            id_pred, confidence = best_pred
+            
+            accuracy = round(100 - confidence)
+            
+            # Debug info
+            cv2.putText(frame, f"ID:{id_pred} Conf:{confidence:.1f}", (x, y+h+30), font, 0.5, (0,255,255), 1)
+            
+            # Accept trained IDs with reasonable confidence
+            if confidence < 80 and id_pred in [24, 25, 26, 27, 28]:  # Accept IDs 1, 5, 20
+                name = "User"
+                confidence_txt = f"{accuracy}%"
+                match_count += 1
+                
+                cv2.putText(frame, f"Verifying... {match_count}/{required_matches}", (10, 30), font, 0.7, (0,255,0), 2)
+                
+                if match_count >= required_matches:
+                    cam.release()
+                    cv2.destroyAllWindows()
+                    print(f"Authenticated: User ID {id_pred}")
+                    return 1, id_pred
             else:
-                recognized_name = "Unknown"
-                accuracy = "{0}%".format(round(100 - confidence))
-                recognition_count = 0  # Reset count on failed recognition
-
-            cv2.putText(img, str(recognized_name), (x+5, y-5), font, 1, (255, 255, 255), 2)
-            cv2.putText(img, str(accuracy), (x+5, y+h-5), font, 1, (255, 255, 0), 1)
-
-            cv2.putText(img, str(id), (x+5, y-5), font, 1, (255, 255, 255), 2)
-            cv2.putText(img, str(accuracy), (x+5, y+h-5), font, 1, (255, 255, 0), 1)
-
-        # Display security instructions
-        cv2.putText(img, "SECURE MODE: Only trained face allowed", (10, img.shape[0]-40), 
-                   font, 0.6, (0, 0, 255), 2)
-        cv2.putText(img, "Look directly at camera", (10, img.shape[0]-20), 
-                   font, 0.5, (255, 255, 255), 1)
-        cv2.putText(img, "Authentication required to continue", (10, img.shape[0]-5), 
-                   font, 0.5, (255, 255, 255), 1)
-
-        cv2.imshow('Jarvis Face Authentication', img)
-
-        k = cv2.waitKey(30) & 0xff
-        if k == 27:  # ESC key - exit application
-            flag = 0
-            break
-        if flag == 1:
+                match_count = max(match_count - 1, 0)
+            
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0,255,0), 2)
+            cv2.putText(frame, name, (x, y-10), font, 0.8, (255,255,255), 2)
+            cv2.putText(frame, confidence_txt, (x, y+h+15), font, 0.6, (255,255,0), 1)
+        
+        # Lighting indicator
+        light_status = "Dark" if mean_brightness < 80 else "Bright" if mean_brightness > 180 else "Good"
+        cv2.putText(frame, f"Light: {light_status}", (10, 60), font, 0.5, (255,255,255), 1)
+        
+        cv2.imshow("JARVIS Face Auth", frame)
+        
+        if time.time() - start_time > 30:
+            print("Timeout")
             break
             
-        # Max attempts reached
-        if attempt_count >= max_attempts:
-            print("Max attempts reached")
-            flag = 0
+        if cv2.waitKey(1) & 0xFF == 27:
             break
-            
-
-    # Do a bit of cleanup
     
     cam.release()
     cv2.destroyAllWindows()
-    return flag
+    return 0, None

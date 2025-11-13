@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2025-10-25T14:46:42.601027",
+    "amount": 25.0,
+    "category": "other",
+    "description": "expense"
+  },
+  {
+    "date": "2025-10-25T14:47:13.430760",
+    "amount": 25.0,
+    "category": "other",
+    "description": "expense"
+  },
+  {
+    "date": "2025-10-25",
+    "amount": 50.0,
+    "category": "book",
+    "description": "add expense 50 on book"
+  },
+  {
+    "date": "2025-10-25",
+    "amount": 100.0,
+    "category": "Groceries",
+    "description": "add expense 100 on groceries"
+  }
+]
