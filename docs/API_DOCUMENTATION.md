@@ -2,454 +2,742 @@
 
 ## Overview
 
-This document provides comprehensive API documentation for JARVIS AI Assistant, including internal APIs, external integrations, and usage examples.
+This document provides comprehensive API documentation for JARVIS AI Assistant, including all available endpoints, functions, and integration methods.
+
+## Table of Contents
+
+- [Core APIs](#core-apis)
+- [Voice Processing](#voice-processing)
+- [AI Integration](#ai-integration)
+- [Authentication](#authentication)
+- [System Control](#system-control)
+- [Phone Integration](#phone-integration)
+- [Configuration](#configuration)
+- [Web Interface APIs](#web-interface-apis)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
 
 ## Core APIs
 
-### 1. Voice Command API
+### Main Application Interface
 
-#### `allCommands(message)`
-Processes voice or text commands and executes appropriate actions.
+#### `start()`
+Initialize and start the JARVIS application.
 
-**Parameters:**
-- `message` (str|int): Command text or 1 for voice input
-
-**Returns:**
-- Executes command and provides voice/text response
-
-**Example:**
 ```python
-# Voice input
-allCommands(1)
-
-# Text input
-allCommands("open calculator")
+def start() -> None:
+    """
+    Start the JARVIS AI Assistant application.
+    
+    Initializes all subsystems including:
+    - Web interface
+    - Authentication system
+    - Voice processing
+    - AI integration
+    - Phone connectivity
+    """
 ```
 
-#### `takecommand()`
-Captures voice input and converts to text.
+#### `shutdown()`
+Gracefully shutdown the application.
 
-**Returns:**
-- `str`: Recognized speech text
-
-**Example:**
 ```python
-query = takecommand()
-print(f"User said: {query}")
+def shutdown() -> bool:
+    """
+    Shutdown JARVIS application gracefully.
+    
+    Returns:
+        bool: True if shutdown successful, False otherwise
+    """
 ```
 
-### 2. AI Integration API
+## Voice Processing
 
-#### `dual_ai.execute(query)`
-Processes queries using dual AI system (Groq + Gemini).
+### Speech Recognition
 
-**Parameters:**
-- `query` (str): User query or command
+#### `SpeechToText` Class
 
-**Returns:**
-- `str`: AI-generated response
-
-**Example:**
 ```python
-from engine.dual_ai import dual_ai
-response = dual_ai.execute("What's the weather like?")
+class SpeechToText:
+    """Advanced speech recognition with multiple engine support."""
+    
+    def __init__(self, config: Optional[SpeechConfig] = None):
+        """Initialize speech recognition system."""
+    
+    def listen_once(self, timeout: Optional[float] = None) -> Optional[str]:
+        """
+        Listen for single speech input.
+        
+        Args:
+            timeout: Maximum wait time in seconds
+            
+        Returns:
+            Recognized text or None if failed
+        """
+    
+    def start_continuous_listening(self, callback: Callable[[str], None]) -> bool:
+        """
+        Start continuous speech recognition.
+        
+        Args:
+            callback: Function to call with recognized text
+            
+        Returns:
+            True if started successfully
+        """
+    
+    def stop_continuous_listening(self) -> bool:
+        """Stop continuous speech recognition."""
+    
+    def set_language(self, language: str) -> bool:
+        """Set recognition language (e.g., 'en-US', 'es-ES')."""
+    
+    def get_available_microphones(self) -> Dict[int, str]:
+        """Get list of available microphones."""
 ```
 
-#### `get_simple_response(query)`
-Gets quick AI response for simple queries.
+### Text-to-Speech
 
-**Parameters:**
-- `query` (str): Simple query
+#### `TextToSpeech` Class
 
-**Returns:**
-- `str`: AI response
-
-### 3. Authentication API
-
-#### `AuthenticateFace()`
-Performs face recognition authentication.
-
-**Returns:**
-- `tuple`: (success_flag, user_id) or `int`: success_flag
-
-**Example:**
 ```python
-from engine.auth.recoganize import AuthenticateFace
-result = AuthenticateFace()
-if result == 1:
-    print("Face authentication successful")
+class TextToSpeech:
+    """Advanced text-to-speech with voice customization."""
+    
+    def __init__(self, config: Optional[VoiceConfig] = None):
+        """Initialize text-to-speech system."""
+    
+    def speak(self, text: str, priority: int = 1, 
+              callback: Optional[Callable] = None) -> bool:
+        """
+        Add text to speech queue.
+        
+        Args:
+            text: Text to speak
+            priority: Speech priority (lower = higher priority)
+            callback: Optional callback when complete
+            
+        Returns:
+            True if added to queue successfully
+        """
+    
+    def speak_immediately(self, text: str, 
+                         callback: Optional[Callable] = None) -> bool:
+        """Speak text immediately, interrupting current speech."""
+    
+    def set_voice_gender(self, gender: VoiceGender) -> bool:
+        """Set voice gender (MALE, FEMALE, NEUTRAL)."""
+    
+    def set_rate(self, rate: int) -> bool:
+        """Set speech rate (50-400 WPM)."""
+    
+    def set_volume(self, volume: float) -> bool:
+        """Set speech volume (0.0-1.0)."""
+    
+    def get_available_voices(self) -> List[Dict[str, Any]]:
+        """Get list of available voices."""
 ```
 
-#### `AuthenticateFingerprint()`
-Performs fingerprint authentication via ADB.
+## AI Integration
 
-**Returns:**
-- `bool`: Authentication success status
+### Dual AI System
 
-### 4. System Control API
+#### `AIManager` Class
 
-#### `speak(text)`
-Converts text to speech with emotion adaptation.
-
-**Parameters:**
-- `text` (str): Text to speak
-
-**Example:**
 ```python
-from engine.command import speak
-speak("Hello, how can I help you?")
+class AIManager:
+    """Manages multiple AI providers with fallback support."""
+    
+    def process_query(self, query: str, context: Optional[Dict] = None) -> str:
+        """
+        Process AI query with context awareness.
+        
+        Args:
+            query: User query text
+            context: Optional context information
+            
+        Returns:
+            AI response text
+        """
+    
+    def set_primary_provider(self, provider: str) -> bool:
+        """Set primary AI provider ('groq' or 'gemini')."""
+    
+    def get_provider_status(self) -> Dict[str, bool]:
+        """Get status of all AI providers."""
+    
+    def clear_context(self) -> None:
+        """Clear conversation context."""
 ```
 
-#### `openCommand(query)`
-Opens applications or websites based on query.
+### AI Response Processing
 
-**Parameters:**
-- `query` (str): Application or website name
-
-### 5. Phone Integration API
-
-#### `whatsApp(mobile_no, message, flag, name, schedule_time=None)`
-Sends WhatsApp messages or makes calls.
-
-**Parameters:**
-- `mobile_no` (str): Phone number
-- `message` (str): Message content
-- `flag` (str): 'message', 'call', or 'video call'
-- `name` (str): Contact name
-- `schedule_time` (str, optional): Schedule time
-
-#### `sendMessage(message, mobile_no, name)`
-Sends SMS via ADB.
-
-**Parameters:**
-- `message` (str): SMS content
-- `mobile_no` (str): Phone number
-- `name` (str): Contact name
-
-#### `makeCall(name, mobile_no)`
-Makes phone call via ADB.
-
-**Parameters:**
-- `name` (str): Contact name
-- `mobile_no` (str): Phone number
-
-### 6. Health Tracking API
-
-#### `mood_tracker.track_mood(mood, description="")`
-Tracks user mood with AI analysis.
-
-**Parameters:**
-- `mood` (str): Mood description
-- `description` (str, optional): Additional context
-
-#### `health_monitor.log_health_data(data_type, value, unit="")`
-Logs health data (heart rate, weight, etc.).
-
-**Parameters:**
-- `data_type` (str): Type of health data
-- `value` (float): Measurement value
-- `unit` (str, optional): Unit of measurement
-
-## External API Integrations
-
-### 1. Groq AI API
-
-**Base URL:** `https://api.groq.com/openai/v1/`
-
-**Authentication:** Bearer token
-
-**Usage:**
 ```python
-from groq import Groq
-client = Groq(api_key="your-api-key")
+def get_simple_response(query: str) -> str:
+    """
+    Get simple AI response for query.
+    
+    Args:
+        query: User query
+        
+    Returns:
+        AI response text
+    """
 
-response = client.chat.completions.create(
-    messages=[{"role": "user", "content": "Hello"}],
-    model="llama-3.1-8b-instant"
-)
+def get_advanced_response(query: str, context: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Get advanced AI response with metadata.
+    
+    Args:
+        query: User query
+        context: Conversation context
+        
+    Returns:
+        Response dictionary with text, confidence, and metadata
+    """
 ```
 
-### 2. Google Gemini API
+## Authentication
 
-**Base URL:** `https://generativelanguage.googleapis.com/v1beta/`
+### Biometric Authentication
 
-**Authentication:** API key
+#### Face Recognition
 
-**Usage:**
 ```python
-import google.generativeai as genai
-genai.configure(api_key="your-api-key")
+def authenticate_face() -> Tuple[bool, Optional[str]]:
+    """
+    Perform face authentication.
+    
+    Returns:
+        Tuple of (success, user_id)
+    """
 
-model = genai.GenerativeModel('gemini-pro')
-response = model.generate_content("Hello")
+def register_face(user_id: str, name: str) -> bool:
+    """
+    Register new face for user.
+    
+    Args:
+        user_id: Unique user identifier
+        name: User display name
+        
+    Returns:
+        True if registration successful
+    """
 ```
 
-### 3. Weather API Integration
+#### Fingerprint Authentication
 
-**Provider:** OpenWeatherMap
-
-**Endpoint:** `https://api.openweathermap.org/data/2.5/weather`
-
-**Usage:**
 ```python
-import requests
-
-def get_weather(city):
-    api_key = "your-api-key"
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
-    response = requests.get(url)
-    return response.json()
+def authenticate_fingerprint() -> bool:
+    """
+    Perform fingerprint authentication via Android device.
+    
+    Returns:
+        True if authentication successful
+    """
 ```
 
-## Configuration APIs
+### User Management
 
-### 1. Settings Management
+```python
+def add_user(name: str) -> str:
+    """
+    Add new user to system.
+    
+    Args:
+        name: User display name
+        
+    Returns:
+        Generated user ID
+    """
 
-#### `get_ui_config()`
-Retrieves UI configuration settings.
+def get_user_info(user_id: str) -> Optional[Dict[str, Any]]:
+    """Get user information by ID."""
 
-**Returns:**
-- `dict`: Configuration dictionary
-
-#### `save_ui_config(config)`
-Saves UI configuration settings.
-
-**Parameters:**
-- `config` (dict): Configuration dictionary
-
-### 2. Voice Control
-
-#### `setVoiceGender(gender)`
-Sets voice gender (male/female).
-
-**Parameters:**
-- `gender` (str): "male" or "female"
-
-**Returns:**
-- `str`: Status message
-
-#### `setLanguage(language)`
-Sets system language.
-
-**Parameters:**
-- `language` (str): Language name
-
-**Returns:**
-- `str`: Status message
-
-## Database APIs
-
-### 1. Contact Management
-
-#### `findContact(query)`
-Searches for contact in database.
-
-**Parameters:**
-- `query` (str): Contact name or partial name
-
-**Returns:**
-- `tuple`: (mobile_number, contact_name) or (0, 0) if not found
-
-#### SQL Operations:
-```sql
--- Add contact
-INSERT INTO contacts (name, mobile_no) VALUES (?, ?)
-
--- Search contact
-SELECT name, mobile_no FROM contacts WHERE LOWER(name) LIKE ?
-
--- Delete contact
-DELETE FROM contacts WHERE LOWER(name) LIKE ?
+def update_user_preferences(user_id: str, preferences: Dict[str, Any]) -> bool:
+    """Update user preferences."""
 ```
 
-### 2. Memory System
+## System Control
 
-#### `context_memory_store(information)`
-Stores information in long-term memory.
+### Application Management
 
-**Parameters:**
-- `information` (str): Information to store
+```python
+def open_application(app_name: str) -> bool:
+    """
+    Open application by name.
+    
+    Args:
+        app_name: Name of application to open
+        
+    Returns:
+        True if opened successfully
+    """
 
-#### `context_memory_recall(query="")`
-Recalls stored memories.
+def close_application(app_name: str) -> bool:
+    """Close application by name."""
 
-**Parameters:**
-- `query` (str, optional): Search query
+def get_running_applications() -> List[Dict[str, Any]]:
+    """Get list of currently running applications."""
+```
 
-**Returns:**
-- `list`: Matching memories
+### File Operations
+
+```python
+def create_file(filepath: str, content: str = "") -> bool:
+    """Create new file with optional content."""
+
+def delete_file(filepath: str) -> bool:
+    """Delete file at specified path."""
+
+def read_file(filepath: str) -> Optional[str]:
+    """Read file content."""
+
+def write_file(filepath: str, content: str) -> bool:
+    """Write content to file."""
+```
+
+### System Monitoring
+
+```python
+def get_system_stats() -> Dict[str, Any]:
+    """
+    Get current system statistics.
+    
+    Returns:
+        Dictionary with CPU, memory, disk usage, etc.
+    """
+
+def take_screenshot(filepath: Optional[str] = None) -> str:
+    """
+    Take screenshot and save to file.
+    
+    Args:
+        filepath: Optional custom save path
+        
+    Returns:
+        Path to saved screenshot
+    """
+```
+
+## Phone Integration
+
+### SMS Management
+
+```python
+def send_message(contact: str, message: str, method: str = "whatsapp") -> bool:
+    """
+    Send message to contact.
+    
+    Args:
+        contact: Contact name or number
+        message: Message text
+        method: Messaging method ('sms' or 'whatsapp')
+        
+    Returns:
+        True if sent successfully
+    """
+
+def read_messages(limit: int = 10) -> List[Dict[str, Any]]:
+    """Read recent messages from phone."""
+
+def get_message_history(contact: str) -> List[Dict[str, Any]]:
+    """Get message history with specific contact."""
+```
+
+### Call Management
+
+```python
+def make_call(contact: str) -> bool:
+    """
+    Initiate call to contact.
+    
+    Args:
+        contact: Contact name or number
+        
+    Returns:
+        True if call initiated successfully
+    """
+
+def get_call_history(limit: int = 10) -> List[Dict[str, Any]]:
+    """Get recent call history."""
+```
+
+### Contact Management
+
+```python
+def add_contact(name: str, phone: str, email: Optional[str] = None) -> bool:
+    """Add new contact to phone."""
+
+def get_contacts() -> List[Dict[str, Any]]:
+    """Get all contacts from phone."""
+
+def search_contacts(query: str) -> List[Dict[str, Any]]:
+    """Search contacts by name or number."""
+```
+
+## Configuration
+
+### Settings Management
+
+```python
+def get_config(section: str) -> Dict[str, Any]:
+    """Get configuration section."""
+
+def set_config(section: str, config: Dict[str, Any]) -> bool:
+    """Update configuration section."""
+
+def reset_config(section: str) -> bool:
+    """Reset configuration section to defaults."""
+```
+
+### Voice Configuration
+
+```python
+def set_voice_gender(gender: str) -> str:
+    """Set voice gender ('male' or 'female')."""
+
+def set_voice_speed(speed: str) -> str:
+    """Set voice speed ('slow', 'normal', 'fast')."""
+
+def set_voice_volume(volume: str) -> str:
+    """Set voice volume ('low', 'medium', 'high')."""
+```
+
+### Language Settings
+
+```python
+def set_language(language: str) -> str:
+    """Set system language."""
+
+def get_current_language() -> str:
+    """Get current system language."""
+
+def get_supported_languages() -> List[str]:
+    """Get list of supported languages."""
+```
+
+## Web Interface APIs
+
+### Eel Exposed Functions
+
+All web interface functions are exposed via the Eel framework for JavaScript interaction.
+
+#### Authentication APIs
+
+```javascript
+// Get authentication status
+eel.getFaceAuthStatus()((status) => {
+    console.log("Face auth status:", status);
+});
+
+// Enable/disable face authentication
+eel.enableFaceAuth()((result) => {
+    console.log("Face auth enabled:", result);
+});
+
+eel.disableFaceAuth()((result) => {
+    console.log("Face auth disabled:", result);
+});
+```
+
+#### Voice Control APIs
+
+```javascript
+// Set voice gender
+eel.setVoiceGender("female")((result) => {
+    console.log("Voice gender set:", result);
+});
+
+// Get current voice gender
+eel.getVoiceGender()((gender) => {
+    console.log("Current voice gender:", gender);
+});
+
+// Set voice speed
+eel.setVoiceSpeed("fast")((result) => {
+    console.log("Voice speed set:", result);
+});
+```
+
+#### System Control APIs
+
+```javascript
+// Start continuous listening
+eel.startContinuousListen()((result) => {
+    console.log("Continuous listening:", result);
+});
+
+// Get system statistics
+eel.getSystemStats()((stats) => {
+    console.log("System stats:", stats);
+});
+```
+
+#### Command History APIs
+
+```javascript
+// Get command history
+eel.getCommandHistory()((history) => {
+    console.log("Command history:", history);
+});
+
+// Search commands
+eel.searchCommands("open", "", "voice")((results) => {
+    console.log("Search results:", results);
+});
+
+// Get command statistics
+eel.getCommandStatistics()((stats) => {
+    console.log("Command stats:", stats);
+});
+```
 
 ## Error Handling
 
-### Standard Error Responses
+### Exception Types
 
 ```python
-# API Error Response Format
+class JarvisError(Exception):
+    """Base exception for JARVIS errors."""
+
+class AuthenticationError(JarvisError):
+    """Authentication related errors."""
+
+class VoiceProcessingError(JarvisError):
+    """Voice processing related errors."""
+
+class AIProcessingError(JarvisError):
+    """AI processing related errors."""
+
+class SystemControlError(JarvisError):
+    """System control related errors."""
+
+class PhoneIntegrationError(JarvisError):
+    """Phone integration related errors."""
+```
+
+### Error Response Format
+
+```python
 {
     "success": False,
-    "error": "Error description",
-    "error_code": "ERROR_CODE",
-    "timestamp": "2024-11-11T10:30:00Z"
-}
-
-# Success Response Format
-{
-    "success": True,
-    "data": {...},
-    "message": "Operation completed successfully",
-    "timestamp": "2024-11-11T10:30:00Z"
+    "error": {
+        "type": "AuthenticationError",
+        "message": "Face authentication failed",
+        "code": "AUTH_001",
+        "details": {
+            "reason": "No face detected",
+            "suggestions": ["Ensure good lighting", "Position face in camera view"]
+        }
+    }
 }
 ```
 
 ### Common Error Codes
 
-- `AUTH_FAILED`: Authentication failure
-- `COMMAND_NOT_FOUND`: Unknown command
-- `API_LIMIT_EXCEEDED`: Rate limit exceeded
-- `NETWORK_ERROR`: Network connectivity issue
-- `PERMISSION_DENIED`: Insufficient permissions
+| Code | Type | Description |
+|------|------|-------------|
+| AUTH_001 | Authentication | Face authentication failed |
+| AUTH_002 | Authentication | Fingerprint authentication failed |
+| VOICE_001 | Voice | Microphone not accessible |
+| VOICE_002 | Voice | Speech recognition timeout |
+| AI_001 | AI Processing | API key invalid |
+| AI_002 | AI Processing | AI service unavailable |
+| SYS_001 | System | Application not found |
+| SYS_002 | System | Insufficient permissions |
+| PHONE_001 | Phone | Device not connected |
+| PHONE_002 | Phone | ADB connection failed |
 
-## Rate Limits
+## Examples
+
+### Basic Voice Command Processing
+
+```python
+from src.speech_to_text import SpeechToText
+from src.command_handler import CommandHandler
+from src.text_to_speech import TextToSpeech
+
+# Initialize components
+stt = SpeechToText()
+handler = CommandHandler()
+tts = TextToSpeech()
+
+# Process voice command
+def process_voice_command():
+    # Listen for speech
+    text = stt.listen_once(timeout=5)
+    
+    if text:
+        # Process command
+        result = handler.process_text(text)
+        
+        # Respond with speech
+        if result.success:
+            tts.speak(result.message)
+        else:
+            tts.speak(f"Sorry, I couldn't process that command: {result.error}")
+    else:
+        tts.speak("I didn't hear anything. Please try again.")
+
+# Example usage
+process_voice_command()
+```
+
+### AI Query Processing
+
+```python
+from engine.dual_ai import get_simple_response, get_advanced_response
+
+# Simple AI query
+response = get_simple_response("What's the weather like today?")
+print(response)
+
+# Advanced AI query with context
+context = {
+    "user_location": "New York",
+    "user_preferences": {"units": "fahrenheit"},
+    "conversation_history": []
+}
+
+advanced_response = get_advanced_response("What's the weather?", context)
+print(f"Response: {advanced_response['text']}")
+print(f"Confidence: {advanced_response['confidence']}")
+```
+
+### Phone Integration Example
+
+```python
+from engine.phone import send_message, get_contacts
+
+# Send WhatsApp message
+success = send_message("John Doe", "Hello from JARVIS!", "whatsapp")
+if success:
+    print("Message sent successfully")
+
+# Get contacts
+contacts = get_contacts()
+for contact in contacts[:5]:  # Show first 5 contacts
+    print(f"Name: {contact['name']}, Phone: {contact['phone']}")
+```
+
+### System Control Example
+
+```python
+from engine.command import allCommands
+from engine.system_monitor import getSystemStats
+
+# Open application
+allCommands("open calculator")
+
+# Get system statistics
+stats = getSystemStats()
+print(f"CPU Usage: {stats['cpu_percent']}%")
+print(f"Memory Usage: {stats['memory_percent']}%")
+print(f"Disk Usage: {stats['disk_percent']}%")
+```
+
+### Web Interface Integration
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JARVIS Control Panel</title>
+    <script src="/eel.js"></script>
+</head>
+<body>
+    <button onclick="startListening()">Start Listening</button>
+    <button onclick="getStats()">Get System Stats</button>
+    
+    <script>
+        function startListening() {
+            eel.startContinuousListen()((result) => {
+                console.log("Listening started:", result);
+            });
+        }
+        
+        function getStats() {
+            eel.getSystemStats()((stats) => {
+                document.getElementById('stats').innerHTML = 
+                    `CPU: ${stats.cpu}%, Memory: ${stats.memory}%`;
+            });
+        }
+    </script>
+</body>
+</html>
+```
+
+## Rate Limits and Quotas
 
 ### AI API Limits
-- **Groq API**: 30 requests/minute
+- **Groq API**: 100 requests/minute
 - **Gemini API**: 60 requests/minute
-- **Weather API**: 1000 requests/day
+- **Fallback**: Automatic switching when limits reached
 
-### Internal Limits
-- **Voice Commands**: No limit
-- **Database Operations**: No limit
-- **File Operations**: System dependent
+### Voice Processing Limits
+- **Continuous Listening**: No limit
+- **Single Recognition**: 30 second timeout
+- **Speech Synthesis**: Queue-based, no limit
 
-## Authentication & Security
+### Phone Integration Limits
+- **SMS**: Depends on carrier limits
+- **Calls**: No artificial limits
+- **ADB Commands**: 10 commands/second max
+
+## Authentication and Security
 
 ### API Key Management
 ```python
-# Environment variables
-GROQ_API_KEY=your_groq_key
-GEMINI_API_KEY=your_gemini_key
-WEATHER_API_KEY=your_weather_key
+# API keys are stored encrypted
+# Never commit API keys to version control
+# Use environment variables or encrypted config files
 
-# Configuration files
-groq_config.py
-gemini_config.py
-```
-
-### Security Headers
-```python
-headers = {
-    "Authorization": f"Bearer {api_key}",
-    "Content-Type": "application/json",
-    "User-Agent": "JARVIS-AI-Assistant/2.0"
+# Example configuration
+{
+    "groq_api_key": "encrypted_key_here",
+    "gemini_api_key": "encrypted_key_here"
 }
 ```
 
-## WebSocket APIs (Future)
+### Biometric Data Security
+- Face recognition data stored locally only
+- Fingerprint authentication via device, no data stored
+- User profiles encrypted at rest
+- No biometric data transmitted over network
 
-### Real-time Communication
-```javascript
-// WebSocket connection for real-time updates
-const ws = new WebSocket('ws://localhost:8080/jarvis');
+## Troubleshooting
 
-ws.onmessage = function(event) {
-    const data = JSON.parse(event.data);
-    console.log('Received:', data);
-};
+### Common Issues
 
-// Send command
-ws.send(JSON.stringify({
-    type: 'command',
-    data: 'open calculator'
-}));
-```
-
-## SDK Usage Examples
-
-### Python SDK
+#### Voice Recognition Not Working
 ```python
-from jarvis_sdk import JARVIS
+# Test microphone
+stt = SpeechToText()
+test_result = stt.test_microphone()
+print(test_result)
 
-# Initialize
-jarvis = JARVIS(api_key="your-key")
-
-# Execute command
-result = jarvis.execute("What's the weather?")
-
-# Voice command
-jarvis.listen_and_execute()
-
-# Health tracking
-jarvis.health.track_mood("happy", "Great day at work!")
+# Check available microphones
+mics = stt.get_available_microphones()
+print(mics)
 ```
 
-### JavaScript SDK (Future)
-```javascript
-import { JARVIS } from 'jarvis-sdk';
-
-const jarvis = new JARVIS({
-    apiKey: 'your-key',
-    baseUrl: 'http://localhost:8000'
-});
-
-// Execute command
-const result = await jarvis.execute('open calculator');
-```
-
-## Testing APIs
-
-### Unit Test Examples
+#### AI API Errors
 ```python
-import unittest
-from engine.command import allCommands
-
-class TestJARVIS(unittest.TestCase):
-    def test_calculator_command(self):
-        result = allCommands("open calculator")
-        self.assertTrue(result)
-    
-    def test_voice_recognition(self):
-        # Mock voice input
-        result = takecommand()
-        self.assertIsInstance(result, str)
+# Check API key configuration
+from engine.dual_ai import test_ai_connection
+result = test_ai_connection()
+print(f"Groq: {result['groq']}, Gemini: {result['gemini']}")
 ```
 
-### API Testing
-```bash
-# Test voice command endpoint
-curl -X POST http://localhost:8000/api/command \
-  -H "Content-Type: application/json" \
-  -d '{"command": "open calculator"}'
-
-# Test health tracking
-curl -X POST http://localhost:8000/api/health/mood \
-  -H "Content-Type: application/json" \
-  -d '{"mood": "happy", "description": "Great day!"}'
-```
-
-## Monitoring & Analytics
-
-### Performance Metrics
-- Response time tracking
-- Command success rates
-- AI model performance
-- System resource usage
-
-### Logging
+#### Phone Connection Issues
 ```python
-import logging
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('jarvis.log'),
-        logging.StreamHandler()
-    ]
-)
-
-logger = logging.getLogger('JARVIS')
-logger.info('Command executed successfully')
+# Test ADB connection
+from engine.phone import test_phone_connection
+connected = test_phone_connection()
+print(f"Phone connected: {connected}")
 ```
 
-This API documentation provides comprehensive coverage of all JARVIS AI Assistant APIs and integration points.
+---
+
+For more detailed examples and advanced usage, see the [Demo Guide](../demos/DEMO_GUIDE.md) and [Contributing Guidelines](../CONTRIBUTING.md).

@@ -1,8 +1,0 @@
-# This is not an error but a good practice
-a = int(input("Enter first number: "))
-b = int(input("Enter second number: "))
-c = int(input("Enter third number: "))
-
-# Removed extra line, added correct indentation
-sum = a + b + c
-print("The sum is:", sum)
