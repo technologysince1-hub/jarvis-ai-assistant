@@ -63,6 +63,13 @@ jarvis_memory.json
 face_samples/
 upload_photos/
 
+# Large Files
+archive_*.zip
+*.zip
+engine/auth/trainer/trainer.yml
+engine/auth/trainer/
+*.yml
+
 # Temporary Files
 *.tmp
 *.temp
