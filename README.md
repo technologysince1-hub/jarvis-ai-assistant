@@ -387,7 +387,7 @@ copies or substantial portions of the Software.
 ## 🙏 Credits
 
 ### Development Team
-- **Lead Developer**: [Your Name]
+- **Lead Developer**: [Avinash Biradar]
 - **AI Integration**: Advanced AI implementation
 - **UI/UX Design**: Modern web interface
 - **System Integration**: Phone and system control
