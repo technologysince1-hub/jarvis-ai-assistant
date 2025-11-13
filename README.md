@@ -174,7 +174,7 @@ graph TB
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/jarvis-ai-assistant.git
+   git clone https://github.com/Avinashb722/jarvis-ai-assistant.git
    cd jarvis-ai-assistant
    ```
 
@@ -260,13 +260,7 @@ python add_user.py
 ![Initializing](ui/Initializsing.png)
 *System startup and authentication*
 
-### Continuous Listening Mode
-![Continuous](ui/continuous.png)
-*Always-on voice recognition mode*
 
-### Command Execution
-![Execution](ui/execution.png)
-*Real-time command execution feedback*
 
 ## ⚙️ Configuration
 
@@ -418,9 +412,9 @@ Inspired by the fictional JARVIS AI from Marvel's Iron Man series, this project 
 
 For support, questions, or feature requests:
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/jarvis-ai-assistant/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/jarvis-ai-assistant/discussions)
-- **Email**: support@jarvis-ai.com
+- **Issues**: [GitHub Issues](https://github.com/Avinashb722/jarvis-ai-assistant/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Avinashb722/jarvis-ai-assistant/discussions)
+- **Contact**: Create an issue for support
 
 ---
 
