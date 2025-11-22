@@ -41,12 +41,15 @@ $(document).ready(function () {
     });
 
     // mic button click event
-
-    $("#MicBtn").click(function () { 
+    window.jarvisMicFunction = function() {
         eel.playAssistantSound()
         $("#Oval").attr("hidden", true);
         $("#SiriWave").attr("hidden", false);
         eel.allCommands()()
+    };
+
+    $("#MicBtn").click(function () { 
+        window.jarvisMicFunction();
     });
     
     // Face recognition toggle buttons (if you want UI buttons)

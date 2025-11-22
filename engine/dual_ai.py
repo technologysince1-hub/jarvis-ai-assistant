@@ -292,6 +292,12 @@ class DualAI:
             'current_voice_gender': self._get_current_voice_gender,
             'voice_status': self._get_current_voice_gender,
             
+            # Token Usage
+            'token_usage': self._get_token_usage,
+            'tokens_used': self._get_token_usage,
+            'token_status': self._get_token_usage,
+            'reset_tokens': self._reset_token_count,
+            
 
             
             # Media Controls
@@ -531,6 +537,14 @@ class DualAI:
             'start_live_review': self._start_live_review,
             'stop_live_review': self._stop_live_review,
             
+            # Code Writer Functions
+            'write_code': self._write_code,
+            'create_project': self._create_project,
+            'generate_code': self._write_code,
+            'code_generator': self._write_code,
+            'build_project': self._create_project,
+            'make_project': self._create_project,
+            
             # Mapping Functions
             'open_maps': self._open_maps,
             'find_location': self._find_location,
@@ -663,9 +677,13 @@ class DualAI:
                 from groq import Groq
                 from engine.groq_config import GROQ_API_KEY
                 self.groq_client = Groq(api_key=GROQ_API_KEY)
+                self.primary_model = "llama-3.1-8b-instant"
+                self.fallback_model = "llama-3.3-70b-versatile"
+                self.token_count = 0
+                self.token_limit = 6000
                 # Test the API key with a simple request
                 test_response = self.groq_client.chat.completions.create(
-                    model="llama-3.1-8b-instant",
+                    model=self.primary_model,
                     messages=[{"role": "user", "content": "test"}],
                     max_tokens=1
                 )
@@ -676,6 +694,30 @@ class DualAI:
 
         else:
             self._init_gemini()
+        
+        # Initialize GPT4All as final fallback
+        self._init_gpt4all()
+    
+    def _get_groq_model(self):
+        """Get appropriate Groq model based on token usage"""
+        if self.token_count >= self.token_limit:
+            print(f"Token limit reached ({self.token_count}/{self.token_limit}), switching to 70B model")
+            return self.fallback_model
+        return self.primary_model
+    
+    def _reset_token_count(self):
+        """Reset token count (call this every minute or when needed)"""
+        self.token_count = 0
+        return "Token count reset to 0"
+    
+    def _get_token_usage(self):
+        """Get current token usage status"""
+        if self.ai_provider == 'groq':
+            percentage = (self.token_count / self.token_limit) * 100
+            current_model = "70B" if self.token_count >= self.token_limit else "8B"
+            return f"Tokens used: {self.token_count}/{self.token_limit} ({percentage:.1f}%) - Current model: {current_model}"
+        else:
+            return "Token tracking only available for Groq AI"
                
      
     
@@ -688,6 +730,41 @@ class DualAI:
             print("Using Gemini AI")
         except Exception as e:
             print(f"AI init error: {e}")
+    
+    def _init_gpt4all(self):
+        """Initialize GPT4All as final fallback"""
+        try:
+            from gpt4all import GPT4All
+            import os
+            
+            # Use model from GPT4All default directory
+            model_path = r"C:\Users\Hp\AppData\Local\nomic.ai\GPT4All"
+            available_models = [
+                "Llama-3.2-1B-Instruct-Q4_0.gguf",
+            ]
+            
+            model_name = None
+            for model in available_models:
+                if os.path.exists(os.path.join(model_path, model)):
+                    model_name = model
+                    break
+            
+            if model_name:
+                self.local_model = GPT4All(
+                    model_name,
+                    model_path=model_path,
+                    verbose=False,
+                    device='cpu',
+                    n_threads=6,
+                    n_ctx=1024
+                )
+                print(f"SUCCESS: GPT4All {model_name} initialized (optimized)")
+            else:
+                print("No GPT4All models found in default directory")
+                self.local_model = None
+        except Exception as e:
+            print(f"ERROR: GPT4All init failed: {e}")
+            self.local_model = None
     
     def execute(self, query):
         try:
@@ -744,6 +821,12 @@ class DualAI:
                 return self._switch_to_male_voice()
             elif 'current voice' in query_lower or 'voice status' in query_lower:
                 return self._get_current_voice_gender()
+            
+            # Handle token usage commands
+            if any(cmd in query_lower for cmd in ['token usage', 'tokens used', 'token status']):
+                return self._get_token_usage()
+            elif 'reset tokens' in query_lower:
+                return self._reset_token_count()
             
             # Process multilingual commands AFTER English commands
             # Skip multilingual processing for basic English "open" commands
@@ -828,6 +911,14 @@ class DualAI:
             # Handle age calculation commands - HIGH PRIORITY
             if 'my age' in query.lower() or 'calculate my age' in query.lower() or 'age calculator' in query.lower():
                 return self._age_calculator()
+            
+            # Handle code writer commands - HIGH PRIORITY
+            if any(cmd in query.lower() for cmd in ['write code', 'generate code', 'create code', 'code generator', 'write python code', 'write javascript code', 'write java code', 'write c++ code', 'write c# code', 'write html code', 'write css code', 'write php code', 'write ruby code', 'write go code', 'write rust code', 'write swift code', 'write kotlin code']):
+                return self._write_code()
+            
+            # Handle project creation commands - HIGH PRIORITY
+            if any(cmd in query.lower() for cmd in ['create project', 'build project', 'make project']):
+                return self._create_project()
             
             # Handle "create document" commands - HIGH PRIORITY
             if any(cmd in query.lower() for cmd in ['create document', 'create report', 'create letter']):
@@ -1336,6 +1427,10 @@ RESPONSE:'''
                             print(f"AI mapping failed for: '{query}' (raw response: '{raw_response}')")
                     except Exception as e:
                         print(f"AI API error: {e}")
+                        # Reset token count if we hit rate limits
+                        if 'rate limit' in str(e).lower():
+                            print("Rate limit hit, resetting token count")
+                            self._reset_token_count()
                         func_name = None
                         
 
@@ -1639,6 +1734,8 @@ RESPONSE:'''
             'smart_lights': ['smart lights', 'control lights'],
             'smart_fan': ['smart fan', 'control fan'],
             'smart_ac': ['smart ac', 'air conditioning'],
+            'write_code': ['write code', 'generate code', 'create code', 'code generator', 'write python code', 'write javascript code', 'write java code', 'write html code', 'write css code', 'python code for', 'javascript code for', 'java code for', 'code for'],
+            'create_project': ['create project', 'build project', 'make project', 'new project', 'project for'],
             'generate_code': ['generate code', 'write code'],
             'debug_code': ['debug code', 'fix code'],
             'translate_text': ['translate', 'translate text'],
@@ -1958,14 +2055,21 @@ RESPONSE:'''
         return any(word in query.lower() for word in question_words) or query.strip().endswith('?')
     
     def get_ai_response(self, prompt):
-        """Get AI response for function mapping"""
+        """Get AI response for function mapping with fallback mechanism"""
         try:
             if self.ai_provider == 'groq':
+                # Get appropriate model based on token usage
+                model = self._get_groq_model()
+                
                 response = self.groq_client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="llama-3.1-8b-instant",
+                    model=model,
                     max_tokens=50
                 )
+                
+                # Track token usage (approximate)
+                self.token_count += len(prompt.split()) + len(response.choices[0].message.content.split())
+                
                 return response.choices[0].message.content.strip()
             else:
                 response = self.gemini_model.generate_content(prompt)
@@ -1973,6 +2077,18 @@ RESPONSE:'''
                 
         except Exception as e:
             print(f"AI response error: {e}")
+            # If 8B model fails due to rate limit, try 70B model
+            if self.ai_provider == 'groq' and 'rate limit' in str(e).lower():
+                try:
+                    print("Trying fallback to 70B model...")
+                    response = self.groq_client.chat.completions.create(
+                        messages=[{"role": "user", "content": prompt}],
+                        model=self.fallback_model,
+                        max_tokens=50
+                    )
+                    return response.choices[0].message.content.strip()
+                except:
+                    pass
             return None
     
     def _answer_question(self, query):
@@ -2014,11 +2130,33 @@ RESPONSE:'''
             prompt = f'You are Jarvis. Answer briefly: "{query}"'
             
             if self.ai_provider == 'groq':
-                response = self.groq_client.chat.completions.create(
-                    messages=[{"role": "user", "content": prompt}],
-                    model="llama-3.1-8b-instant"
-                )
-                return response.choices[0].message.content.strip()
+                # Get appropriate model based on token usage
+                model = self._get_groq_model()
+                
+                try:
+                    response = self.groq_client.chat.completions.create(
+                        messages=[{"role": "user", "content": prompt}],
+                        model=model
+                    )
+                    
+                    # Track token usage (approximate)
+                    self.token_count += len(prompt.split()) + len(response.choices[0].message.content.split())
+                    
+                    return response.choices[0].message.content.strip()
+                    
+                except Exception as e:
+                    # If rate limit reached, try fallback model
+                    if 'rate limit' in str(e).lower() or self.token_count >= self.token_limit:
+                        print(f"Switching to {self.fallback_model} due to rate limit")
+                        try:
+                            response = self.groq_client.chat.completions.create(
+                                messages=[{"role": "user", "content": prompt}],
+                                model=self.fallback_model
+                            )
+                            return response.choices[0].message.content.strip()
+                        except:
+                            return "I'm having trouble answering that."
+                    raise e
 
             else:
                 response = self.gemini_model.generate_content(prompt)
@@ -7935,6 +8073,237 @@ Max 2 lines each.'''
                 return f"{doc_type.title()} creation started for: {topic} ({num_pages} pages)"
         except Exception as e:
             return f"Document creation error: {str(e)}"
+    
+    def _write_code(self):
+        """AI Code Writer - Write code in any language"""
+        try:
+            if hasattr(self, '_current_query') and self._current_query:
+                import re
+                query = self._current_query.lower()
+                
+                # Extract programming language
+                languages = ['python', 'javascript', 'java', 'c++', 'c#', 'html', 'css', 'php', 'ruby', 'go', 'rust', 'swift', 'kotlin']
+                language = 'python'  # default
+                for lang in languages:
+                    if lang in query:
+                        language = lang
+                        break
+                
+                # Extract code description with improved patterns
+                patterns = [
+                    r'write\s+(?:' + '|'.join(languages) + r')\s+code\s+(?:for|to)\s+(.+)',
+                    r'write\s+code\s+(?:in\s+(?:' + '|'.join(languages) + r')\s+)?(?:for|to)\s+(.+)',
+                    r'generate\s+(?:' + '|'.join(languages) + r')\s+code\s+(?:for|to)\s+(.+)',
+                    r'generate\s+code\s+(?:in\s+(?:' + '|'.join(languages) + r')\s+)?(?:for|to)\s+(.+)',
+                    r'create\s+(?:' + '|'.join(languages) + r')\s+code\s+(?:for|to)\s+(.+)',
+                    r'create\s+code\s+(?:in\s+(?:' + '|'.join(languages) + r')\s+)?(?:for|to)\s+(.+)'
+                ]
+                
+                description = None
+                for pattern in patterns:
+                    match = re.search(pattern, query)
+                    if match:
+                        description = match.group(1).strip()
+                        break
+                
+                # Fallback extraction if patterns fail
+                if not description:
+                    # Remove common words and extract the main request
+                    temp = query
+                    for word in ['write', 'generate', 'create', 'code', 'program', 'script'] + languages:
+                        temp = temp.replace(word, '')
+                    temp = re.sub(r'\b(?:for|to|in|a|an|the)\b', '', temp)
+                    description = temp.strip() or "a simple program"
+                
+                # Generate code using AI with better prompt
+                prompt = f"""Write ONLY the {language} code for: {description}
+
+Requirements:
+- Write clean, working {language} code
+- Include proper comments
+- Make it functional and ready to run
+- Focus specifically on: {description}
+- No explanations, just code
+
+Code:"""
+                
+                if self.ai_provider == 'groq':
+                    response = self.groq_client.chat.completions.create(
+                        messages=[{"role": "user", "content": prompt}],
+                        model="llama-3.1-8b-instant",
+                        max_tokens=1500
+                    )
+                    code = response.choices[0].message.content.strip()
+                else:
+                    response = self.gemini_model.generate_content(prompt)
+                    code = response.text.strip()
+                
+                # Clean up the response to get only code
+                if '```' in code:
+                    # Extract code from markdown blocks
+                    import re
+                    code_match = re.search(r'```(?:python|javascript|java|html|css)?\n?([\s\S]*?)```', code)
+                    if code_match:
+                        code = code_match.group(1).strip()
+                
+                # Remove any leading explanatory text
+                lines = code.split('\n')
+                code_lines = []
+                code_started = False
+                for line in lines:
+                    if not code_started and (line.strip().startswith('#') or line.strip().startswith('//') or 
+                                           line.strip().startswith('def ') or line.strip().startswith('function ') or
+                                           line.strip().startswith('class ') or line.strip().startswith('import ') or
+                                           line.strip().startswith('from ') or line.strip().startswith('<!DOCTYPE') or
+                                           line.strip().startswith('<') or line.strip().startswith('var ') or
+                                           line.strip().startswith('let ') or line.strip().startswith('const ')):
+                        code_started = True
+                    if code_started:
+                        code_lines.append(line)
+                
+                if code_lines:
+                    code = '\n'.join(code_lines)
+                
+                # Save to file
+                extensions = {
+                    'python': '.py', 'javascript': '.js', 'java': '.java', 'c++': '.cpp',
+                    'c#': '.cs', 'html': '.html', 'css': '.css', 'php': '.php',
+                    'ruby': '.rb', 'go': '.go', 'rust': '.rs', 'swift': '.swift', 'kotlin': '.kt'
+                }
+                
+                ext = extensions.get(language, '.txt')
+                # Clean description for filename
+                clean_desc = re.sub(r'[^a-zA-Z0-9_\s]', '', description)
+                clean_desc = clean_desc.replace(' ', '_')[:20]
+                filename = f"ai_code_{clean_desc}_{datetime.now().strftime('%H%M%S')}{ext}"
+                file_path = os.path.join(os.path.expanduser("~"), "Desktop", filename)
+                
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(code)
+                
+                # Open in notepad
+                subprocess.Popen(f'notepad "{file_path}"', shell=True)
+                
+                return f"AI {language} code generated and opened: {filename}"
+            
+            return "Please specify what code to write (e.g., 'write python code for calculator')"
+            
+        except Exception as e:
+            return f"Code generation failed: {str(e)}"
+    
+
+    def _create_project(self):
+        """AI Project Creator - generates complete multi-file projects"""
+        import os
+        import re
+        import subprocess
+
+        try:
+            if not hasattr(self, '_current_query') or not self._current_query:
+                return "Please specify what project to create (e.g., 'create todo app using python')"
+
+            query = self._current_query.strip()
+
+            tech_keywords = ['python', 'javascript', 'html', 'css', 'react', 'flask', 'django', 'node', 'java', 'c++']
+            mentioned_tech = [tech for tech in tech_keywords if tech in query.lower()]
+
+            project_name_raw = query.replace("create", "").replace("project", "").strip()
+            project_name = re.sub(r'[^a-zA-Z0-9_]', '_', project_name_raw)[:30]
+            if not project_name:
+                project_name = "AI_Project"
+
+            prompt = f"""
+Create a complete working project for: "{query}"
+
+Technologies detected: {', '.join(mentioned_tech) if mentioned_tech else 'auto-select best stack'}
+
+Generate 3–6 FULL files. Format EXACTLY like this:
+
+**FILENAME: main.py**
+```python
+# code here
+```
+
+**FILENAME: README.md**
+```markdown
+# content here
+```
+
+CRITICAL RULES:
+- ONLY complete, working code inside ``` blocks
+- Enterprise-grade, production-ready implementation with better ui and backend
+- Professional UI with perfect alignment, modern design, responsive layout
+- Zero placeholders, TODOs, or incomplete features
+- No explanations or text outside file blocks
+- Comprehensive README with installation and usage
+- All functionality must work flawlessly
+"""
+
+            ai_response = ""
+            try:
+                if hasattr(self, "groq_client") and self.groq_client:
+                    resp = self.groq_client.chat.completions.create(
+                        model="llama-3.1-8b-instant",
+                        messages=[{"role": "user", "content": prompt}],
+                        max_tokens=4096
+                    )
+                    ai_response = resp.choices[0].message.content
+
+                elif hasattr(self, "gemini_model") and self.gemini_model:
+                    resp = self.gemini_model.generate_content(prompt)
+                    ai_response = resp.text
+
+                else:
+                    return "❌ No AI provider available."
+            except Exception as e:
+                return f"❌ AI Generation Failed: {e}"
+
+            if not ai_response:
+                return "❌ AI returned empty response."
+
+            file_blocks = re.findall(
+                r'\*\*FILENAME:\s*(.*?)\*\*.*?```(?:[a-zA-Z]*)\n(.*?)```',
+                ai_response,
+                flags=re.DOTALL
+            )
+
+            files = []
+            for filename, content in file_blocks:
+                filename = filename.strip()
+                content = content.strip("\n")
+                files.append((filename, content))
+
+            if not files:
+                files = [
+                    ("main.py", f'# Fallback generated project\nprint("Project: {query}")'),
+                    ("README.md", f'# {project_name}\n\nAI formatting error fallback.')
+                ]
+
+            desktop = os.path.join(os.path.expanduser("~"), "Desktop")
+            project_dir = os.path.join(desktop, f"AI_Project_{project_name}")
+            os.makedirs(project_dir, exist_ok=True)
+
+            for filename, content in files:
+                file_path = os.path.join(project_dir, filename)
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(content)
+
+            try:
+                subprocess.run(["explorer", project_dir], check=False)
+            except:
+                pass
+
+            return (
+                f"✅ Project '{project_name}' created successfully!\n"
+                f"📁 Location: {project_dir}\n"
+                f"📄 Files created: {len(files)}\n"
+                f"🚀 Folder opened automatically."
+            )
+
+        except Exception as e:
+            return f"❌ Project creation failed: {str(e)}"
+
 
 dual_ai = DualAI()
 

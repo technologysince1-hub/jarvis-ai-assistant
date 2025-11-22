@@ -797,6 +797,11 @@ def takecommand():
     
     return query.lower()
 
+# Expose takecommand for chatbot use
+@eel.expose
+def chatbot_listen():
+    return takecommand()
+
 def parse_multiple_commands(query):
     """Parse multiple commands from a single query"""
     import re
@@ -1603,6 +1608,118 @@ def process_single_command(query):
             return
         # Unmute is handled at the beginning of the function
         
+        # Direct website search commands - "open search for ml"
+        elif "open" in query and "search for" in query:
+            try:
+                import webbrowser
+                import pyautogui
+                import time
+                
+                # Extract website and search terms
+                parts = query.split("search for", 1)
+                website_part = parts[0].replace("open", "").strip().lower()
+                search_terms = parts[1].strip()
+                
+                import urllib.parse
+                
+                # Direct search URLs for specific websites
+                search_urls = {
+                    'youtube': f'https://www.youtube.com/results?search_query={urllib.parse.quote(search_terms)}',
+                    'amazon': f'https://www.amazon.in/s?k={urllib.parse.quote(search_terms)}',
+                    'flipkart': f'https://www.flipkart.com/search?q={urllib.parse.quote(search_terms)}',
+                    'myntra': f'https://www.myntra.com/{urllib.parse.quote(search_terms)}',
+                    'ajio': f'https://www.ajio.com/search/?text={urllib.parse.quote(search_terms)}',
+                    'meesho': f'https://www.meesho.com/search?q={urllib.parse.quote(search_terms)}',
+                    'wikipedia': f'https://en.wikipedia.org/w/index.php?search={urllib.parse.quote(search_terms)}',
+                    'youtube music': f'https://music.youtube.com/search?q={urllib.parse.quote(search_terms)}',
+                    'stackoverflow': f'https://stackoverflow.com/search?q={urllib.parse.quote(search_terms)}',
+                    'github': f'https://github.com/search?q={urllib.parse.quote(search_terms)}',
+                    'npm': f'https://www.npmjs.com/search?q={urllib.parse.quote(search_terms)}',
+                    'coursera': f'https://www.coursera.org/search?query={urllib.parse.quote(search_terms)}',
+                    'udemy': f'https://www.udemy.com/courses/search/?q={urllib.parse.quote(search_terms)}',
+                    'perplexity': f'https://www.perplexity.ai/search?q={urllib.parse.quote(search_terms)}',
+                    'linkedin': f'https://www.linkedin.com/search/results/all/?keywords={urllib.parse.quote(search_terms)}',
+                    'linkedin jobs': f'https://www.linkedin.com/jobs/search/?keywords={urllib.parse.quote(search_terms)}',
+                    'google': f'https://www.google.com/search?q={urllib.parse.quote(search_terms)}',
+                    'facebook': f'https://www.facebook.com/search/top/?q={urllib.parse.quote(search_terms)}',
+                    'twitter': f'https://twitter.com/search?q={urllib.parse.quote(search_terms)}',
+                    'instagram': f'https://www.instagram.com/explore/tags/{urllib.parse.quote(search_terms)}',
+                    'reddit': f'https://www.reddit.com/search/?q={urllib.parse.quote(search_terms)}',
+                    'netflix': f'https://www.netflix.com/search?q={urllib.parse.quote(search_terms)}',
+                    'ebay': f'https://www.ebay.com/sch/i.html?_nkw={urllib.parse.quote(search_terms)}',
+                    'pinterest': f'https://www.pinterest.com/search/pins/?q={urllib.parse.quote(search_terms)}',
+                    'quora': f'https://www.quora.com/search?q={urllib.parse.quote(search_terms)}',
+                    'medium': f'https://medium.com/search?q={urllib.parse.quote(search_terms)}',
+                    'dribbble': f'https://dribbble.com/search/{urllib.parse.quote(search_terms)}',
+                    'behance': f'https://www.behance.net/search/projects?search={urllib.parse.quote(search_terms)}',
+                    'unsplash': f'https://unsplash.com/s/photos/{urllib.parse.quote(search_terms)}',
+                    'pixabay': f'https://pixabay.com/images/search/{urllib.parse.quote(search_terms)}',
+                    'freepik': f'https://www.freepik.com/search?query={urllib.parse.quote(search_terms)}',
+                    'codepen': f'https://codepen.io/search/pens?q={urllib.parse.quote(search_terms)}',
+                    'devto': f'https://dev.to/search?q={urllib.parse.quote(search_terms)}',
+                    'hashnode': f'https://hashnode.com/search?q={urllib.parse.quote(search_terms)}',
+                    'producthunt': f'https://www.producthunt.com/search?q={urllib.parse.quote(search_terms)}',
+                    'hackernews': f'https://hn.algolia.com/?q={urllib.parse.quote(search_terms)}',
+                    'duckduckgo': f'https://duckduckgo.com/?q={urllib.parse.quote(search_terms)}',
+                    'bing': f'https://www.bing.com/search?q={urllib.parse.quote(search_terms)}',
+                    'yandex': f'https://yandex.com/search/?text={urllib.parse.quote(search_terms)}',
+                    'maps': f'https://www.google.com/maps/search/{urllib.parse.quote(search_terms)}',
+                    'zomato': f'https://www.zomato.com/search?q={urllib.parse.quote(search_terms)}',
+                    'swiggy': f'https://www.swiggy.com/search?q={urllib.parse.quote(search_terms)}',
+                    'bookmyshow': f'https://in.bookmyshow.com/explore/search/{urllib.parse.quote(search_terms)}',
+                    'makemytrip': f'https://www.makemytrip.com/search?q={urllib.parse.quote(search_terms)}',
+                    'airbnb': f'https://www.airbnb.com/s/{urllib.parse.quote(search_terms)}',
+                    'booking': f'https://www.booking.com/searchresults.html?ss={urllib.parse.quote(search_terms)}',
+                    'justdial': f'https://www.justdial.com/search/all/{urllib.parse.quote(search_terms)}',
+                    'bigbasket': f'https://www.bigbasket.com/ps/?q={urllib.parse.quote(search_terms)}',
+                    'nykaa': f'https://www.nykaa.com/search/result/?q={urllib.parse.quote(search_terms)}',
+                    'lenskart': f'https://www.lenskart.com/search?q={urllib.parse.quote(search_terms)}',
+                    'pharmeasy': f'https://pharmeasy.in/search/all?name={urllib.parse.quote(search_terms)}',
+                    'practo': f'https://www.practo.com/search/doctors?results_type=doctor&q={urllib.parse.quote(search_terms)}',
+                    'hotstar': f'https://www.hotstar.com/in/search?q={urllib.parse.quote(search_terms)}',
+                    'spotify': f'https://open.spotify.com/search/{urllib.parse.quote(search_terms)}',
+                    'gaana': f'https://gaana.com/search/{urllib.parse.quote(search_terms)}'
+                }
+                
+                # Regular websites (open and type)
+                regular_sites = {
+                    'chatgpt': 'https://chat.openai.com',
+                    'gemini': 'https://gemini.google.com',
+                    'claude': 'https://claude.ai',
+                    'bard': 'https://bard.google.com',
+                    'copilot': 'https://copilot.microsoft.com'
+                }
+                
+                # Check if website has direct search URL
+                if website_part in search_urls:
+                    webbrowser.open(search_urls[website_part])
+                    speak(f"Searching for {search_terms}")
+                elif website_part in regular_sites:
+                    webbrowser.open(regular_sites[website_part])
+                    speak(f"Opening and typing {search_terms}")
+                    time.sleep(3)
+                    pyautogui.typewrite(search_terms)
+                    pyautogui.press('enter')
+                else:
+                    # Fallback for unknown websites
+                    website_url = f"https://{website_part}.com"
+                    webbrowser.open(website_url)
+                    speak(f"Opening and typing {search_terms}")
+                    time.sleep(3)
+                    pyautogui.typewrite(search_terms)
+                    pyautogui.press('enter')
+                
+            except Exception as e:
+                print(f"Website search error: {e}")
+                speak("Failed to open website")
+            try:
+                eel.ShowHood()
+            except:
+                pass
+            return
+        
+        # General web search with AI
+           
         # Browser and Website Management Commands - handle before app management
         elif any(word in query.lower() for word in ['open ', 'launch ', 'run ']) and any(word in query.lower() for word in ['browser', 'web', 'website', 'site']):
             try:

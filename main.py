@@ -734,6 +734,100 @@ def start():
             playAssistantSound()
         else:
             exit()
+    @eel.expose
+    def chatbot_chat(message, provider='auto', model=None):
+        try:
+            import os
+            import sys
+            original_cwd = os.getcwd()
+            chatbot_path = os.path.join(original_cwd, 'chatgpt_clone')
+            
+            os.chdir(chatbot_path)
+            if chatbot_path not in sys.path:
+                sys.path.insert(0, chatbot_path)
+            
+            import importlib.util
+            spec = importlib.util.spec_from_file_location("app", "app.py")
+            app = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(app)
+            ai_manager = app.ai_manager
+            response = ai_manager.get_response(message, provider, model)
+            
+            os.chdir(original_cwd)
+            return {'response': response}
+        except Exception as e:
+            try:
+                os.chdir(original_cwd)
+            except:
+                pass
+            return {'error': str(e)}
+    
+    # Add HTTP route for voice input
+    from flask import Flask, request, jsonify
+    from flask_cors import CORS
+    flask_app = Flask(__name__)
+    CORS(flask_app)
+    
+    @flask_app.route('/chatbot_listen', methods=['POST', 'OPTIONS'])
+    def chatbot_listen_http():
+        if request.method == 'OPTIONS':
+            response = jsonify({})
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+            response.headers.add('Access-Control-Allow-Methods', 'POST')
+            return response
+            
+        try:
+            import speech_recognition as sr
+            r = sr.Recognizer()
+            with sr.Microphone() as source:
+                print('Chatbot listening....')
+                r.pause_threshold = 1
+                r.adjust_for_ambient_noise(source)
+                
+                try:
+                    audio = r.listen(source, timeout=8, phrase_time_limit=4)
+                except sr.WaitTimeoutError:
+                    print("Chatbot listening timeout - no speech detected")
+                    return ""
+            
+            try:
+                print('Chatbot recognizing...')
+                query = r.recognize_google(audio, language='en-IN')
+                if query and query.strip():
+                    print(f"Chatbot recognized: {query}")
+                    return query
+                else:
+                    print("Chatbot recognition: empty result")
+                    return ""
+            except sr.UnknownValueError:
+                print("Chatbot recognition: could not understand audio")
+                return ""
+            except sr.RequestError as e:
+                print(f"Chatbot recognition service error: {e}")
+                return ""
+            except Exception as e:
+                print(f"Chatbot recognition error: {e}")
+                return ""
+        except Exception as e:
+            print(f"Chatbot voice error: {e}")
+            return ""
+    
+    # Start Flask server in background
+    import threading
+    def run_flask():
+        try:
+            print("Starting Flask server on port 8001...")
+            flask_app.run(host='localhost', port=8001, debug=False, use_reloader=False)
+        except Exception as e:
+            print(f"Flask server error: {e}")
+    
+    flask_thread = threading.Thread(target=run_flask, daemon=True)
+    flask_thread.start()
+    print("Flask thread started for chatbot voice input")
+    
+
+    
     os.system('start msedge.exe --app="http://localhost:8000/index.html"')
 
     eel.start('index.html', mode=None, host='localhost', block=True)

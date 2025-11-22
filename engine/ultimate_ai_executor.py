@@ -63,17 +63,13 @@ class UltimateAIExecutor:
     def interpret_command(self, user_command):
         """AI interprets any natural command and decides execution method"""
         prompt = f"""
-You are an advanced Windows automation AI that uses Python to control and create content in Microsoft Office (Word, Excel, PowerPoint), browsers, and system applications.
+You are a Windows automation system. Convert user commands to executable code.
 
-🎯 Your goal:
-Convert the user instruction into a *direct executable command* for the laptop.
+User Command: "{user_command}"
 
-⚠️ IMPORTANT:
-Do NOT include explanations, markdown formatting, or extra text.
-Output ONLY in this exact format:
-
-METHOD: <cmd | powershell | pyautogui | system | office | python>
-COMMAND: <the exact code or command to execute>
+Output format:
+METHOD: <system | pyautogui | office | screen | search | file | ai>
+COMMAND: <exact Python code>
 
 ---
 
@@ -637,8 +633,25 @@ Now generate the proper output for this command:
 """
 
         
-        from engine.dual_ai import dual_ai
+        # Try 70B model first for complex automation tasks
+        try:
+            from groq import Groq
+            from engine.groq_config import GROQ_API_KEY
+            groq_client = Groq(api_key=GROQ_API_KEY)
+            
+            response = groq_client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=1000
+            )
+            result = response.choices[0].message.content.strip()
+            if result:
+                return result
+        except Exception as e:
+            print(f"70B model failed: {e}, falling back to dual_ai")
         
+        # Fallback to dual_ai
+        from engine.dual_ai import dual_ai
         result = dual_ai._answer_question(prompt)
         if result:
             return result
@@ -759,6 +772,57 @@ Now generate the proper output for this command:
         return False
     
 
+    
+    def execute_command(self, user_command):
+        """Main function to execute any desktop command"""
+        try:
+            # Get AI response for the command
+            ai_response = self.get_ai_response(user_command)
+            if not ai_response:
+                return "Command not recognized"
+            
+            # Parse METHOD and COMMAND from AI response
+            lines = ai_response.split('\n')
+            method = None
+            command = []
+            
+            for line in lines:
+                if line.startswith('METHOD:'):
+                    method = line.replace('METHOD:', '').strip()
+                elif line.startswith('COMMAND:'):
+                    command = []
+                elif method and line.strip():
+                    command.append(line)
+            
+            if not method or not command:
+                return "Invalid command format"
+            
+            # Execute based on method
+            command_code = '\n'.join(command)
+            
+            if method == 'system':
+                self.run_system_call(command_code)
+            elif method == 'pyautogui':
+                self.run_pyautogui(command_code)
+            elif method == 'office':
+                self.run_office(command_code)
+            elif method == 'ai':
+                exec(command_code, globals())
+            elif method == 'ai_office':
+                exec(command_code, globals())
+            elif method == 'screen':
+                self.run_screen_analysis(command_code)
+            elif method == 'search':
+                self.run_search_explanation(command_code)
+            elif method == 'file':
+                self.run_file_analysis(command_code)
+            else:
+                return f"Unknown method: {method}"
+            
+            return "Command executed successfully"
+            
+        except Exception as e:
+            return f"Error executing command: {str(e)}"
     
     def workflow_automation(self, trigger_command):
         workflows = {
@@ -992,7 +1056,32 @@ Be concise (3-6 words). Output ONLY the response.
         return self.next_move_predictions_enabled
 
 # Global instance
+# Create global instance
 ultimate_ai = UltimateAIExecutor()
+
+# Main function to use from other modules
+def execute_desktop_command(command):
+    """Execute any desktop automation command"""
+    return ultimate_ai.execute_command(command)
+
+# Quick access functions
+def open_app(app_name):
+    return execute_desktop_command(f"open {app_name}")
+
+def system_control(action):
+    return execute_desktop_command(action)
+
+def create_document(doc_type, content=""):
+    return execute_desktop_command(f"create {doc_type} document with {content}")
+
+def ai_automation(task):
+    return execute_desktop_command(f"use AI to {task}")
+
+if __name__ == "__main__":
+    # Test the system
+    print("Ultimate AI Executor Ready!")
+    print(execute_desktop_command("open calculator"))
+    print(execute_desktop_command("check system info"))
 
 def execute_command(cmd):
     """Simple function to execute any command"""

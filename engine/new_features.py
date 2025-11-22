@@ -265,9 +265,7 @@ class NewFeatures:
             'python packages': 'python_packages', 'installed packages': 'python_packages', 'pip list': 'python_packages', 'show packages': 'python_packages',
             
            
-            
-            # Universal Website Management
-            'website': 'open_website', 'site': 'open_website', 'web': 'open_website', 'browse': 'open_website',
+           
             'open web': 'open_website', 'close web': 'close_website',
             'Empty recycle bin': 'empty_trash', 'clean recycle bin': 'empty_trash',
         }
@@ -503,7 +501,7 @@ class NewFeatures:
                 return self.close_website(query)
             
             # Check for website commands (highest priority)
-            if any(word in query.lower() for word in ['website', 'site', 'web', 'browse']) or any(word in query.lower() for word in ['open ', 'launch ', 'start ', 'run ']) and any(word in query.lower() for word in ['website', 'site', '.com', '.org', '.net']):
+            if any(word in query.lower() for word in ['website', 'site', 'web', 'browse']) and any(word in query.lower() for word in ['open ', 'launch ', 'start ', 'run ']) and any(word in query.lower() for word in ['website', 'site', '.com', '.org', '.net']):
                 return self.open_website(query)
             
             # Check for universal app commands (high priority)

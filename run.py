@@ -22,6 +22,14 @@ def startJarvis():
         print(f"Error: {e}")
         sys.exit(1)
 
+def startChatbot():
+    try:
+        import os
+        os.chdir('chatgpt_clone')
+        subprocess.run([sys.executable, 'app.py'])
+    except Exception as e:
+        print(f"Chatbot error: {e}")
+
 # To run hotword with restart capability
 def listenHotword():
     max_restarts = 3
@@ -107,10 +115,12 @@ if __name__ == '__main__':
         p1 = multiprocessing.Process(target=startJarvis, name="JarvisMain")
         p2 = multiprocessing.Process(target=listenHotword, name="HotwordDetection")
         p3 = multiprocessing.Process(target=runProactiveJarvis, name="ProactiveJarvis")
+        p4 = multiprocessing.Process(target=startChatbot, name="ChatbotServer")
         
         p1.start()
         p2.start()
         p3.start()
+        p4.start()
         
         # Silent startup
         
@@ -129,6 +139,13 @@ if __name__ == '__main__':
             if p3.is_alive():
                 p3.kill()
                 p3.join()
+        
+        if p4.is_alive():
+            p4.terminate()
+            p4.join(timeout=3)
+            if p4.is_alive():
+                p4.kill()
+                p4.join()
         
         print("JARVIS stopped")
         

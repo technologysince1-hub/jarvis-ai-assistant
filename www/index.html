@@ -282,6 +282,7 @@
                                 <button id="SendBtn" class="glow-on-hover" hidden><i class="bi bi-send"></i></button>
                                 <button id="MicBtn" class="glow-on-hover"><i class="bi bi-mic"></i></button>
                                 <button id="ChatBtn" class="glow-on-hover" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-chat-dots"></i></button>
+                                <button id="AIChatBtn" class="glow-on-hover" onclick="openChatbotModal()" title="AI Chatbot"><i class="bi bi-robot"></i></button>
                                 <button id="SettingsBtn" class="glow-on-hover"><i class="bi bi-gear"></i></button>
                                 <button id="ContinuousStartBtn" class="glow-on-hover" title="Start Continuous Listening"><i class="bi bi-play-circle"></i></button>
                                 <button id="ContinuousStopBtn" class="glow-on-hover" title="Stop Continuous Listening" style="display:none;"><i class="bi bi-stop-circle"></i></button>
@@ -611,7 +612,36 @@
     <script src="main.js"></script>
     <script src="controller.js"></script>
     <script src="/eel.js"></script>
+    
+    <script>
+    async function openChatbotModal() {
+        const modal = document.createElement('div');
+        modal.id = 'chatbotModal';
+        modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000;';
+        
+        // Load chatbot template
+        try {
+            const response = await fetch('chatbot-template.html');
+            const html = await response.text();
+            
+            const iframe = document.createElement('iframe');
+            iframe.style.cssText = 'width: 100%; height: 100%; border: none; border-radius: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);';
+            iframe.srcdoc = html;
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '×';
+            closeBtn.style.cssText = 'position: absolute; top: 2%; left: 20%; background: #ff4444; border: none; color: white; font-size: 20px; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10001;';
+            closeBtn.onclick = () => document.body.removeChild(modal);
+            
+            modal.appendChild(iframe);
+            modal.appendChild(closeBtn);
+            document.body.appendChild(modal);
+        } catch (error) {
+            console.error('Failed to load chatbot:', error);
+        }
+    }
 
+    </script>
 
 </body>
 

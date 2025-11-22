@@ -1,602 +1,602 @@
 [
   {
-    "timestamp": "2025-11-10T20:55:24.520219",
-    "user_input": "generate image of student studying in table",
-    "jarvis_response": "Generating image...",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T20:57:29.567640",
-    "user_input": "translator book to kannada",
-    "jarvis_response": "Command not recognized",
+    "timestamp": "2025-11-17T11:34:36.585803",
+    "user_input": "build project  portfolio ",
+    "jarvis_response": "AI project created at: C:\\Users\\Hp\\Desktop\\AI_Project_project_portfolio — 17 files written.",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T20:58:34.021296",
-    "user_input": "translate book to kannada",
-    "jarvis_response": "Translation:\n'book' -> 'ಪುಸ್ತಕ' (kannada)\nPronunciation: poos-taka",
+    "timestamp": "2025-11-17T11:36:02.758152",
+    "user_input": "create project html css python portfolio ",
+    "jarvis_response": "Error: AI failed to generate project files. Please try again with a more specific description.",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T20:59:02.931222",
-    "user_input": "translate book to hindi",
-    "jarvis_response": "Translation:\n'book' -> 'पुस्तक' (hindi)\nPronunciation: pu-sta-ka (Note: Pronunciation may vary slightly depending on regional accents)",
+    "timestamp": "2025-11-17T11:36:46.648295",
+    "user_input": "create project portfolio with html and css ",
+    "jarvis_response": "Executing 2 commands",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T20:59:34.206868",
-    "user_input": "translate book to tamil",
-    "jarvis_response": "Translation:\n'book' -> 'நூல்' (tamil)\nPronunciation: NOOL",
+    "timestamp": "2025-11-17T11:37:00.247185",
+    "user_input": "create project portfolio with html css ",
+    "jarvis_response": "Error: AI failed to generate project files. Please try again with a more specific description.",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:00:01.371400",
-    "user_input": "translate hi what are you doing to kannada",
-    "jarvis_response": "Translation:\n'hi what are you doing' -> 'ಹೌದು ನೀವು ಏನೇ ಮಾಡುತ್ತೀರಾ' (kannada)\nPronunciation: HOW-doo NEE-vuu ENAY mahuu-THOO-tuh-ree-ah",
+    "timestamp": "2025-11-17T11:38:22.964916",
+    "user_input": "create project portfolio with html css ",
+    "jarvis_response": "Error: AI failed to generate project files. Please try again with a more specific description.",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:02:52.801042",
-    "user_input": "convert 1kg to g",
-    "jarvis_response": "Unit Converter:\nOriginal: 1.0 kg\nConverted: 1000 g\nFormula: 1 kg = 1000 g\nCategory: weight",
+    "timestamp": "2025-11-17T11:38:58.560486",
+    "user_input": "create project portfolio with html css ",
+    "jarvis_response": "Error: AI failed to generate project files. Please try again with a more specific description.",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:07:12.072236",
-    "user_input": "send email to kumbaranand007@gmail.com subject hi good morning sir",
-    "jarvis_response": "EMAIL: Formats - 1. 'send email to user@email.com subject Hello message Test' 2. 'user@email.com sub Hello Test'",
+    "timestamp": "2025-11-17T11:52:03.247542",
+    "user_input": "create project portfolio website",
+    "jarvis_response": "AI generation failed: Error code: 400 - {'error': {'message': 'The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:08:09.259820",
-    "user_input": "kumbaranand007@gmail.com sub hi good morning oisr",
-    "jarvis_response": "Gmail opened.",
+    "timestamp": "2025-11-17T11:53:37.004397",
+    "user_input": "create project portfolio website",
+    "jarvis_response": "Error: Could not parse project files from AI response",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:09:32.907034",
-    "user_input": "send email to kumbaranand007@gmail.com sub hi good morning oisr",
-    "jarvis_response": "EMAIL: Sent successfully to kumbaranand007@gmail.com - Subject: hi - Message: good morning oisr",
+    "timestamp": "2025-11-17T11:59:17.921046",
+    "user_input": "create project portfolio website",
+    "jarvis_response": "✅ Project 'project_portfolio_website' created at: C:\\Users\\Hp\\Desktop\\AI_Project_project_portfolio_website\n📁 Files: 25 | 📂 Opened in Explorer",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:11:42.296510",
-    "user_input": "enable auto reply",
-    "jarvis_response": "None",
+    "timestamp": "2025-11-17T12:03:19.703624",
+    "user_input": "create project calculator using python",
+    "jarvis_response": "✅ Project 'project_calculator_using_python' created at: C:\\Users\\Hp\\Desktop\\AI_Project_project_calculator_using_python\n📁 Files: 10 | 📂 Opened in Explorer",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:12:42.229337",
-    "user_input": "auto reply",
-    "jarvis_response": "System issues found:\\n- Found 258 temp files for cleanup",
+    "timestamp": "2025-11-17T12:03:54.391146",
+    "user_input": "create project portfolio website using html css",
+    "jarvis_response": "✅ Project 'project_portfolio_website_using_html_css' created at: C:\\Users\\Hp\\Desktop\\AI_Project_project_portfolio_website_using_html_css\n📁 Files: 15 | 📂 Opened in Explorer",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:14:46.730644",
-    "user_input": "enable auto reply email",
-    "jarvis_response": "EMAIL: AI Auto-response enabled - monitoring inbox every 30 seconds",
+    "timestamp": "2025-11-17T12:07:14.313949",
+    "user_input": "create project portfolio website using html css",
+    "jarvis_response": "✅ Project 'project_portfolio_website_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_portfolio_website_using_html_css\n📄 Files: Project Structure, index.html index.html, style.css, project.html, project-card.html...\n🌐 Open index.html to view your website",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:20:21.237103",
-    "user_input": "enable auto reply email",
-    "jarvis_response": "EMAIL: AI Auto-response enabled - monitoring inbox every 30 seconds",
+    "timestamp": "2025-11-17T12:12:02.893664",
+    "user_input": "create project portfolio website using html css",
+    "jarvis_response": "✅ Project 'project_portfolio_website_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_portfolio_website_using_html_css\n📄 Files: 3 files created\n🌐 Open index.html to view",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T21:21:46.957374",
-    "user_input": "enable auto reply email",
-    "jarvis_response": "EMAIL: AI Auto-response enabled - monitoring inbox every 30 seconds",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T21:25:34.657540",
-    "user_input": "large file",
-    "jarvis_response": "Found 1 large files (>100MB):\nC:\\Users\\Hp\\Desktop\\QHISE64.EXE - 452.7MB\n",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T21:26:24.414343",
-    "user_input": "check disk",
-    "jarvis_response": "Disk Health Scanner:\nScan Time: 2025-11-10 21:26:26\n\nPhysical Disks:\n- SAMSUNG MZVL4512HBLU-00BH1  512105932800  OK\n\nDisk Space Analysis:\nDrive C:: 89GB free / 250GB total (64.3% used) ✅ Good\nDrive D:: 224GB free / 224GB total (0.0% used) ✅ Good\n\nHealth Recommendations:\n✅ Run disk cleanup regularly\n✅ Check for disk errors: chkdsk /f\n✅ Defragment HDDs monthly\n✅ Monitor SMART data for early warnings\n",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T21:27:03.033836",
-    "user_input": "battery health",
-    "jarvis_response": "Battery Health Monitor:\nCurrent charge: 54%\nPower adapter: Disconnected\nHealth status: Good\n\nDetailed report: battery_report.html",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T21:28:04.724855",
-    "user_input": "thermal monitor",
-    "jarvis_response": "Thermal Monitor:\nCPU Usage: 20.5%\n\nTemperatures:\n✅ CPU (estimated): 40.2°C\n\nThermal Guidelines:\n✅ Normal: < 75°C\n⚠️ Warning: 75-85°C\n🔥 Critical: > 85°C\n",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:39:24.602624",
-    "user_input": "whatsapp message to akshay hi",
-    "jarvis_response": "message send successfully to akshay",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:39:49.174086",
-    "user_input": "whatsapp message to akshay hi",
-    "jarvis_response": "message send successfully to akshay",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:46:42.007352",
-    "user_input": "create folder asdf on deckstop",
-    "jarvis_response": "Folder 'asdf' created in deckstop",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:47:35.550843",
-    "user_input": "create folder asdf on music",
-    "jarvis_response": "Spotify opened.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:48:07.915516",
-    "user_input": "create folder asdf on document",
-    "jarvis_response": "Folder 'asdf' created in Documents",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:48:57.188704",
-    "user_input": "zip folder asdf",
-    "jarvis_response": "Task completed.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:49:39.187148",
-    "user_input": "zip folder vtucrack",
-    "jarvis_response": "Task completed.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:51:15.323304",
-    "user_input": "zip file semi",
-    "jarvis_response": "File 'semi' not found in Desktop",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:51:26.884421",
-    "user_input": "zip file semi.ppt",
-    "jarvis_response": "File 'semi.ppt' not found in Desktop",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:51:43.050130",
-    "user_input": "zip file basu.pdf",
-    "jarvis_response": "Created basu.pdf.zip in Desktop",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:51:55.174171",
-    "user_input": "zip file basu",
-    "jarvis_response": "File 'basu' not found in Desktop",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:53:26.166789",
-    "user_input": "whatsapp message to anand  hi",
-    "jarvis_response": "Contact not found. Please add contact first",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:54:49.045044",
-    "user_input": "send  message to anand bgm on whatsapp hi",
-    "jarvis_response": "Sending message to Anand BG on WhatsApp: Hi",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:55:17.046149",
-    "user_input": "send  message to akshay on whatsapp hi",
-    "jarvis_response": "\"Sending message to Akshay on WhatsApp: 'Hi'.\"",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:55:47.591192",
-    "user_input": "whatsapp message to akshay hi",
-    "jarvis_response": "message send successfully to akshay",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:56:24.857033",
-    "user_input": "add contact anand 8792477142",
-    "jarvis_response": "Contact anand with number 8792477142 added successfully",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:56:46.624953",
-    "user_input": "whatsapp message to anand  hi",
-    "jarvis_response": "message send successfully to anand",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:57:02.228180",
-    "user_input": "whatsapp message to anand  hi",
-    "jarvis_response": "message send successfully to anand",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T22:57:26.134025",
-    "user_input": "whatsapp message to akshay hi",
-    "jarvis_response": "message send successfully to akshay",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:03:13.379345",
-    "user_input": "send message to abhinandan",
-    "jarvis_response": "Contact not found. Please add contact first",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:03:26.188355",
-    "user_input": "send message to anand",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:04:04.584613",
-    "user_input": "send message to anand",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:05:07.342120",
-    "user_input": "phone call to akshay",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:05:51.625861",
-    "user_input": "phone call to akshay",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:07:06.546564",
-    "user_input": "phone call to akshay",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:07:48.413733",
-    "user_input": "phone call to anand",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:08:06.351092",
-    "user_input": "call to anand",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:13:33.348149",
-    "user_input": "phone call to anand",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:19:04.278212",
-    "user_input": "video call to akshay",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:21:36.393458",
-    "user_input": "whatsapp message box",
-    "jarvis_response": "Message field ready, sir.",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:21:51.240317",
-    "user_input": "send message to akshay",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:23:28.742232",
-    "user_input": "google search machine learning",
-    "jarvis_response": "Searching Google for: machine learning",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:23:53.396782",
-    "user_input": "play mooku naga beku song in",
-    "jarvis_response": "Playing first result for: mooku naga beku song in",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:24:42.513987",
-    "user_input": "wikipedia search b.ed bijapur",
-    "jarvis_response": "No Wikipedia article found for 'search b.ed bijapur'",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:24:57.529693",
-    "user_input": "wikipedia search for realme college",
-    "jarvis_response": "No Wikipedia article found for 'search for realme college'",
-    "input_type": "voice"
-  },
-  {
-    "timestamp": "2025-11-10T23:25:27.226996",
-    "user_input": " Wikipedia search for blde college",
-    "jarvis_response": "No Wikipedia article found for 'search for blde college'",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:26:42.318033",
-    "user_input": " Wikipedia search for blde college",
-    "jarvis_response": "No Wikipedia article found for 'blde college'",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:28:59.542554",
-    "user_input": "Machine learning",
+    "timestamp": "2025-11-17T12:12:56.007849",
+    "user_input": "create project restaurant site using html css",
     "jarvis_response": "Processing...",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T23:29:38.674712",
-    "user_input": " Wikipedia search for Machine learning",
-    "jarvis_response": "No Wikipedia article found for 'machine learning'. Try searching with more specific terms.",
+    "timestamp": "2025-11-17T12:13:40.848151",
+    "user_input": "create project restaurant site using html css",
+    "jarvis_response": "Command completed",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T23:31:53.371639",
-    "user_input": "wiki python programming",
-    "jarvis_response": "No Wikipedia article found for 'python programming'. Try searching with more specific terms.",
+    "timestamp": "2025-11-17T12:14:01.926411",
+    "user_input": "create project landing page using html css",
+    "jarvis_response": "✅ Project 'project_landing_page_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_landing_page_using_html_css\n📄 Files: 3 files created\n🌐 Open index.html to view",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T23:35:53.936623",
-    "user_input": "create ppt of Machine learning",
-    "jarvis_response": "Learned: general_action",
+    "timestamp": "2025-11-17T12:14:52.128414",
+    "user_input": "create project shoping web using html css",
+    "jarvis_response": "✅ Project 'project_shoping_web_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_shoping_web_using_html_css\n📄 Files: 3 files created\n🌐 Open index.html to view",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T23:36:19.978880",
-    "user_input": "create ppt of school",
-    "jarvis_response": "PowerPoint opened.",
+    "timestamp": "2025-11-17T12:16:45.429781",
+    "user_input": "create project shoping web using html css",
+    "jarvis_response": "✅ Project 'project_shoping_web_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_shoping_web_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T23:37:30.736030",
-    "user_input": "create presentation of school",
-    "jarvis_response": "PowerPoint opened.",
+    "timestamp": "2025-11-17T12:17:03.973606",
+    "user_input": "create project portfolio website using html css",
+    "jarvis_response": "✅ Project 'project_portfolio_website_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_portfolio_website_using_html_css\n📄 Files: 3 files created\n🌐 Open index.html to view",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-10T23:38:01.245342",
-    "user_input": "make slides of school",
-    "jarvis_response": "PowerPoint opened.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:38:23.794895",
-    "user_input": "ai presentation  of school",
-    "jarvis_response": "PowerPoint opened.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:39:21.093309",
-    "user_input": "ai report  of school",
-    "jarvis_response": "groq",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:42:46.243334",
-    "user_input": "aura create ppt of ai",
-    "jarvis_response": "PPT created successfully.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:43:32.825873",
-    "user_input": "aura create 5 slide  ppt of ai in detail point",
-    "jarvis_response": "Presentation created successfully.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:45:08.394389",
-    "user_input": "aura create  word report of leave letter for head master",
-    "jarvis_response": "Word report created successfully.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:54:11.561230",
-    "user_input": "make slides of school",
-    "jarvis_response": "PowerPoint opened.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:54:23.573023",
-    "user_input": "make slides of school",
-    "jarvis_response": "PowerPoint opened.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:55:13.907403",
-    "user_input": "make slides of school",
-    "jarvis_response": "PowerPoint opened.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:56:13.263292",
-    "user_input": "make slides of school",
-    "jarvis_response": "Presentation outline for 'ai assistant':\nHere's a presentation outline for an AI Assistant:\n\n**Title:** \"Unlocking the Power of AI Assistants: Revolutionizing Productivity and Efficiency\"\n\n**Slide 1: Introduction**\n\n* Brief overview of AI Assistants\n* Importance of AI Assistants in personal and professional life\n* Thesis statement: AI Assistants are transforming the way we work and interact with technology\n\n**Main Points:**\n\n**Slide 2: Point 1 - Enhanced Productivity**\n\n* Description: AI Assistants help automate repetitive tasks, freeing up time for more important tasks\n* Key features:\n + Scheduling and calendar management\n + Email management and filtering\n + Task automation and workflows\n* Visuals: Screenshots of AI Assistants in action, productivity statistics\n\n**Slide 3: Point 2 - Personalization and Convenience**\n\n* Description: AI Assistants learn user behavior and preferences to provide personalized recommendations and actions\n* Key features:\n + Voice interactions and natural language processing\n + Smart home integration and IoT control\n + Personalized suggestions and recommendations\n* Visuals: Illustrations of AI Assistants in various home and office settings\n\n**Slide 4: Point 3 - Enhanced Security and Compliance**\n\n* Description: AI Assistants help protect against cybersecurity threats and ensure compliance with regulatory requirements\n* Key features:\n + Advanced threat detection and prevention\n + Compliance with data protection regulations (e.g. GDPR, HIPAA)\n + Regular software updates and security patches\n* Visuals: Infographics on cybersecurity risks and statistics on compliance breaches\n\n**Slide 5: Point 4 - Accessibility and Inclusivity**\n\n* Description: AI Assistants provide assistive technology and access to information for people with disabilities\n* Key features:\n + Voice-activated interfaces for visually impaired users\n + Text-to-speech functionality for reading assistance\n + Multilingual support for diverse populations\n* Visuals: Images of people with disabilities using AI Assistants, accessibility ratings and awards\n\n**Slide 6: Point 5 - Scalability and Integration**\n\n* Description: AI Assistants integrate with other apps and platforms to expand functionality and automate workflows\n* Key features:\n + Integration with popular productivity and collaboration tools\n + Cloud-based services for seamless collaboration\n + API access for developers to build custom integrations\n* Visuals: Screenshots of AI Assistants integrating with other apps, integration diagrams\n\n**Conclusion:**\n\n* Recap of main points\n* Call to action: implement AI Assistants in personal and professional life to revolutionize productivity and efficiency.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-10T23:59:44.402403",
-    "user_input": "make slides of school",
-    "jarvis_response": "PowerPoint created: school_presentation.pptx\n\nOutline:\n**Presentation Title:** The Importance of Education and Its Impact on Students\n\n**Slide 1: Introduction**\n\n* Brief introduction to the importance of education\n* Thesis statement: Education is essential for a student's personal and professional growth.\n\n**Slide 2: Main Point 1 - Career Opportunities**\n\n* Description: Having a solid education provides students with various career opportunities\n* Key points:\n + Higher education opens doors to better job prospects\n + Education is crucial for professional advancement and career mobility\n* Statistics or examples to support the claim\n\n**Slide 3: Main Point 2 - Personal Growth and Development**\n\n* Description: Education helps students develop essential life skills and values\n* Key points:\n + Education fosters critical thinking, problem-solving, and decision-making skills\n + It helps students develop empathy, tolerance, and cultural awareness\n* Personal anecdotes or quotes to support the claim\n\n**Slide 4: Main Point 3 - Social Mobility and Equality**\n\n* Description: Education is key to breaking social and economic barriers\n* Key points:\n + Education provides opportunities for social mobility and equality\n + It empowers students to challenge societal norms and stereotypes\n* Statistics or data to support the claim\n\n**Slide 5: Main Point 4 - Lifelong Learning and Adaptability**\n\n* Description: Education prepares students for a rapidly changing world\n* Key points:\n + Education fosters a culture of lifelong learning and adaptability\n + It helps students stay ahead of technological advancements and industry trends\n* Examples or case studies to support the claim\n\n**Slide 6: Main Point 5 - Economic Benefits**\n\n* Description: Education has a direct impact on economic growth and development\n* Key points:\n + Education contributes to a country's economic growth and prosperity\n + It increases tax revenues and reduces poverty rates\n* Statistics or data to support the claim\n\n**Slide 7: Conclusion**\n\n* Summarize the main points and reiterate the importance of education\n* Call to action: Encourage students to prioritize their education and strive for excellence.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:02:53.411235",
-    "user_input": "make slides of school",
-    "jarvis_response": "AI presentation error: [Errno 13] Permission denied: 'school_presentation.pptx'",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:03:42.524202",
-    "user_input": "make slides of school",
-    "jarvis_response": "PowerPoint created: school_presentation.pptx\n\nOutline:\nHere's a presentation outline on the topic of \"School\":\n\n**Title:** The Importance of School in Our Lives\n\n**Slide 1: Introduction**\n\n- Title slide with the presentation title\n- Brief introduction to the topic\n\n**Slide 2: Main Point 1 - Foundation for Success**\n\n- Brief description: School lays the foundation for future success by imparting knowledge and skills.\n- Key points:\n  + Develops critical thinking and problem-solving skills\n  + Prepares students for careers and further education\n  + Encourages curiosity and a love for learning\n\n**Slide 3: Main Point 2 - Socialization and Friendship**\n\n- Brief description: School provides opportunities for socialization and forming lasting friendships.\n- Key points:\n  + Develops communication and teamwork skills\n  + Builds confidence and self-esteem\n  + Creates a support system for students\n\n**Slide 4: Main Point 3 - Emotional and Mental Growth**\n\n- Brief description: School plays a vital role in emotional and mental growth and development.\n- Key points:\n  + Teaches coping mechanisms and stress management techniques\n  + Encourages emotional intelligence and self-awareness\n  + Fosters a growth mindset and resilience\n\n**Slide 5: Main Point 4 - Opportunities for Exploration**\n\n- Brief description: School offers opportunities for students to explore their interests and passions.\n- Key points:\n  + Provides various extracurricular activities and clubs\n  + Allows students to explore different subjects and interests\n  + Facilitates leadership and volunteer opportunities\n\n**Slide 6: Main Point 5 - Preparation for the Future**\n\n- Brief description: School prepares students for the challenges and opportunities of the future.\n- Key points:\n  + Teaches time management and organization skills\n  + Encourages goal-setting and planning\n  + Prepares students for the workforce and independent living\n\n**Slide 7: Conclusion**\n\n- Summary of the main points\n- Final thoughts and takeaways",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:06:03.800553",
-    "user_input": "make slides of school",
-    "jarvis_response": "PowerPoint created: school_presentation.pptx\n\nOutline:\n**Presentation Outline: The Importance of School**\n\n**I. Introduction**\n\n* Brief overview of the significance of school in a student's life\n* Thesis statement: School is essential for personal growth, socialization, and future success.\n\n**II. Benefits of Education (Main Point 1)**\n\n* Description of how education can improve cognitive skills, including critical thinking, problem-solving, and decision-making\n* Examples of how education can lead to better job opportunities and higher salaries\n\n**III. Socialization and Networking (Main Point 2)**\n\n* Explanation of how school provides opportunities for socialization, including making friends and developing relationships\n* Discussion of how these connections can lead to future collaborations and professional networks\n\n**IV. Personal Growth and Development (Main Point 3)**\n\n* Discussion of how school can help students develop important life skills, such as time management, self-discipline, and responsibility\n* Examples of how these skills can be applied in real-life situations\n\n**V. Future Success and Opportunities (Main Point 4)**\n\n* Description of how a good education can open doors to new career paths and opportunities\n* Statistics on the importance of education in achieving success and prosperity\n\n**VI. Conclusion**\n\n* Recap of the importance of school in a student's life\n* Final thoughts and call to action to take school seriously and make the most of the educational experience.\n\n**VII. Final Slide**\n\n* Final message and contact information for further questions or support.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:06:36.312733",
-    "user_input": "make slides of collage",
-    "jarvis_response": "PowerPoint created: collage_presentation.pptx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:08:28.404537",
-    "user_input": "make slides of human",
-    "jarvis_response": "PowerPoint created: human_presentation.pptx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:10:04.388616",
-    "user_input": "make slides of human",
-    "jarvis_response": "AI presentation error: [Errno 13] Permission denied: 'human_presentation.pptx'",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:10:19.042689",
-    "user_input": "make slides of leptop",
-    "jarvis_response": "✅ Presentation created successfully: leptop_presentation.pptx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:15:45.089166",
-    "user_input": "create document on ai 10 page",
-    "jarvis_response": "Task completed.",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:17:34.843296",
-    "user_input": "create document on ai 10 page",
-    "jarvis_response": "Document created: a_document.docx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:18:25.200989",
-    "user_input": "create letter for mother",
-    "jarvis_response": "Document created: f_letter.docx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:20:30.523643",
-    "user_input": "create letter for mother",
-    "jarvis_response": "Document creation error: [Errno 13] Permission denied: 'f_letter.docx'",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:20:50.401614",
-    "user_input": "create letter for leave to teacher",
-    "jarvis_response": "Document creation error: [Errno 13] Permission denied: 'f_letter.docx'",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:21:48.486622",
-    "user_input": "create document on school 10 page",
-    "jarvis_response": "✅ Document created successfully: s_document.docx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:25:39.640691",
-    "user_input": "create document on school 10 page",
-    "jarvis_response": "✅ Document created successfully: school_document.docx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T00:26:12.949396",
-    "user_input": "create letter for leave to teacher",
-    "jarvis_response": "✅ Document created successfully: Document_letter.docx",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T08:34:17.952021",
-    "user_input": "volume up on phone",
-    "jarvis_response": "Volume increased",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T08:34:41.441790",
-    "user_input": "volume down on phone",
-    "jarvis_response": "Volume decreased",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T08:35:00.429053",
-    "user_input": "mute on phone",
-    "jarvis_response": "Phone muted",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T08:35:27.437702",
-    "user_input": "screenshot on phone",
-    "jarvis_response": "Screenshot taken",
-    "input_type": "text"
-  },
-  {
-    "timestamp": "2025-11-11T09:51:38.427082",
-    "user_input": "whatsapp on phone",
+    "timestamp": "2025-11-17T12:17:43.458597",
+    "user_input": "create project restaurant site using html css",
     "jarvis_response": "Processing...",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-11T09:51:50.660730",
-    "user_input": "open whatsapp on phone",
-    "jarvis_response": "whatsapp on phone not found",
+    "timestamp": "2025-11-17T12:18:01.724279",
+    "user_input": "create project business website using html css",
+    "jarvis_response": "✅ Project 'project_business_website_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_business_website_using_html_css\n📄 Files: 3 files created\n🌐 Open index.html to view",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-11T10:03:17.181009",
-    "user_input": "open youtube on phone",
-    "jarvis_response": "youtube on phone not found",
+    "timestamp": "2025-11-17T12:20:33.986582",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'project_calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_calculator_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
     "input_type": "text"
   },
   {
-    "timestamp": "2025-11-11T15:48:04.894186",
-    "user_input": "live review",
-    "jarvis_response": "Task completed.",
+    "timestamp": "2025-11-17T12:21:50.486256",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'project_todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_todo_app_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:22:46.689342",
+    "user_input": "create project business website using html css",
+    "jarvis_response": "✅ Project 'project_business_website_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_business_website_using_html_css\n📄 Files: 3 files created\n🌐 Open index.html to view",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:23:18.565866",
+    "user_input": "create project contact form using html css",
+    "jarvis_response": "✅ Project 'project_contact_form_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_contact_form_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:23:58.162099",
+    "user_input": "create project tic tac toe using html css",
+    "jarvis_response": "✅ Project 'project_tic_tac_toe_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_tic_tac_toe_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:24:17.928704",
+    "user_input": "create project tic tac toe using html css",
+    "jarvis_response": "✅ Project 'project_tic_tac_toe_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_tic_tac_toe_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:25:02.514913",
+    "user_input": "create project weather app using html css",
+    "jarvis_response": "Weather data not available for 'app using html css'",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:25:16.286057",
+    "user_input": "create project timer app using html css",
+    "jarvis_response": "✅ Project 'project_timer_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_timer_app_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:25:40.022276",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'project_calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_project_calculator_using_html_css\n📄 Files: 4 files created\n🌐 Open index.html to view",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:41:17.702047",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'css' created!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_css\n📄 Files: 3 created\n🚀 Folder opened automatically",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:41:44.233031",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'css' created!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_css\n📄 Files: 3 created\n🚀 Folder opened automatically",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:42:17.266796",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'css' created!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_css\n📄 Files: 3 created\n🚀 Folder opened automatically",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:45:06.139631",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'css' created!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_css\n📄 Files: 4 created\n🚀 Folder opened automatically",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:45:50.032766",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'css' created!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_css\n📄 Files: 4 created\n🚀 Folder opened automatically",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:46:25.518735",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'css' created!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_css\n📄 Files: 4 created\n🚀 Folder opened automatically",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:56:15.738002",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'portfolio_website_with_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio_website_with_html_cs\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:56:32.923276",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T12:56:54.653229",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:04:12.990935",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:04:38.084846",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "Processing...",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:04:43.764358",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 3\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:06:10.056720",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:08:45.978949",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 9\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:09:20.362567",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:09:59.048573",
+    "user_input": "create project contact form using html css",
+    "jarvis_response": "✅ Project 'contact_form_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_contact_form_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:10:21.098199",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'portfolio_website_with_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio_website_with_html_cs\n📄 Files created: 3\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:11:32.191086",
+    "user_input": "create project calculator all number same like calclator using html css ",
+    "jarvis_response": "✅ Project 'calculator_all_number_same_lik' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_all_number_same_lik\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:11:55.422109",
+    "user_input": "create project tic tac toe using html css",
+    "jarvis_response": "✅ Project 'tic_tac_toe_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_tic_tac_toe_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:12:35.548344",
+    "user_input": "create project tic tac toe using html css",
+    "jarvis_response": "✅ Project 'tic_tac_toe_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_tic_tac_toe_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:13:34.490872",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 3\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:14:51.810178",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:18:10.935818",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:19:00.353715",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:19:15.562028",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:19:42.446288",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:20:27.024695",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'portfolio_website_with_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio_website_with_html_cs\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:20:55.165621",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'portfolio_website_with_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio_website_with_html_cs\n📄 Files created: 3\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:22:41.354789",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'portfolio_website_with_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio_website_with_html_cs\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:23:08.321055",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 6\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:23:54.286365",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:26:39.482344",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:27:42.040798",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:31:00.837546",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:31:39.550430",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:32:00.933378",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:32:20.848864",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'portfolio_website_with_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio_website_with_html_cs\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:33:56.597999",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:34:34.819863",
+    "user_input": "create project portfolio website with html css",
+    "jarvis_response": "✅ Project 'portfolio_website_with_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio_website_with_html_cs\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:35:10.942748",
+    "user_input": "create project portfolio  with html css",
+    "jarvis_response": "✅ Project 'portfolio__with_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_portfolio__with_html_css\n📄 Files created: 3\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:35:30.674309",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:36:47.145028",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:37:39.589473",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:38:27.465723",
+    "user_input": "create project todo app using html css",
+    "jarvis_response": "✅ Project 'todo_app_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_todo_app_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:38:55.617697",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:39:24.339424",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:40:45.195281",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "Processing...",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:41:09.233056",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:42:42.252929",
+    "user_input": "create project calculator using html css",
+    "jarvis_response": "✅ Project 'calculator_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:44:18.477117",
+    "user_input": "create project shoping website  using html css",
+    "jarvis_response": "✅ Project 'shoping_website__using_html_cs' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_shoping_website__using_html_cs\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:44:44.334530",
+    "user_input": "create project shoping web  using html css",
+    "jarvis_response": "✅ Project 'shoping_web__using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_shoping_web__using_html_css\n📄 Files created: 3\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:46:15.664909",
+    "user_input": "create project ultra modern ecommerce landing page with animated ui using only html css no javascript",
+    "jarvis_response": "✅ Project 'ultra_modern_ecommerce_landing' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_ultra_modern_ecommerce_landing\n📄 Files created: 3\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:48:05.667339",
+    "user_input": "create admin dashboard using html css",
+    "jarvis_response": "Folder 'New Folder' created in Desktop",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:48:24.574915",
+    "user_input": "create snake game using javascript",
+    "jarvis_response": "Processing...",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:48:34.701685",
+    "user_input": "create project  snake game using javascript",
+    "jarvis_response": "✅ Project 'snake_game_using_javascript' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_snake_game_using_javascript\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:49:22.825005",
+    "user_input": "create project chessgame using javascript",
+    "jarvis_response": "✅ Project 'chessgame_using_javascript' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_chessgame_using_javascript\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:49:45.435677",
+    "user_input": "create project chess game using javascript",
+    "jarvis_response": "✅ Project 'chess_game_using_javascript' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_chess_game_using_javascript\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:50:29.942132",
+    "user_input": "create project chess game with all coin on board using javascript",
+    "jarvis_response": "✅ Project 'chess_game_with_all_coin_on_bo' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_chess_game_with_all_coin_on_bo\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:51:23.620279",
+    "user_input": "create project admin dashboard using html css",
+    "jarvis_response": "✅ Project 'admin_dashboard_using_html_css' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_admin_dashboard_using_html_css\n📄 Files created: 2\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:52:33.242632",
+    "user_input": "create calculator using python",
+    "jarvis_response": "Calculator opened.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:52:53.677807",
+    "user_input": "create project calculator using python",
+    "jarvis_response": "✅ Project 'calculator_using_python' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_python\n📄 Files created: 6\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-17T13:53:40.642645",
+    "user_input": "create project calculator using python html css",
+    "jarvis_response": "✅ Project 'calculator_using_python_html_c' created successfully!\n📁 Location: C:\\Users\\Hp\\Desktop\\AI_Project_calculator_using_python_html_c\n📄 Files created: 4\n🚀 Folder opened automatically.",
+    "input_type": "text"
+  },
+  {
+    "timestamp": "2025-11-20T15:24:14.780271",
+    "user_input": "open web youtube",
+    "jarvis_response": "Opened web youtube successfully",
     "input_type": "voice"
   },
   {
-    "timestamp": "2025-11-11T15:49:39.131824",
-    "user_input": "generate qr avinash",
-    "jarvis_response": "✅ QR Code generated for 'avinash': jarvis_qr_20251111_154939.png",
+    "timestamp": "2025-11-20T16:15:43.195588",
+    "user_input": "open notepad",
+    "jarvis_response": "Opened notepad successfully",
     "input_type": "voice"
   },
   {
-    "timestamp": "2025-11-11T15:51:48.742425",
-    "user_input": "translate book into hindi",
-    "jarvis_response": "Translation:\n'book' -> 'पुस्तक (pustak)' (hindi)\nPronunciation: POO-stak",
+    "timestamp": "2025-11-20T16:16:01.525111",
+    "user_input": "increase volume",
+    "jarvis_response": "Volume increased.",
     "input_type": "voice"
   },
   {
-    "timestamp": "2025-11-11T15:52:29.908457",
-    "user_input": "phone call to akshay",
-    "jarvis_response": "Which mode you want to use whatsapp or mobile",
+    "timestamp": "2025-11-20T16:24:39.299324",
+    "user_input": "open notepad",
+    "jarvis_response": "Opened notepad successfully",
     "input_type": "voice"
   },
   {
-    "timestamp": "2025-11-11T15:54:03.809077",
-    "user_input": "start writing",
-    "jarvis_response": "📝 Universal dictation completed",
+    "timestamp": "2025-11-20T17:10:39.896463",
+    "user_input": "hello how are you",
+    "jarvis_response": "Master, I'm functioning within optimum parameters. How may I assist you today?",
+    "input_type": "voice"
+  },
+  {
+    "timestamp": "2025-11-20T17:20:22.146924",
+    "user_input": "increase volume",
+    "jarvis_response": "Volume increased.",
+    "input_type": "voice"
+  },
+  {
+    "timestamp": "2025-11-20T17:24:48.141111",
+    "user_input": "open web youtube",
+    "jarvis_response": "Opened web youtube successfully",
+    "input_type": "voice"
+  },
+  {
+    "timestamp": "2025-11-20T17:25:00.576095",
+    "user_input": "open web chrome",
+    "jarvis_response": "Opened web chrome successfully",
     "input_type": "voice"
   }
 ]
