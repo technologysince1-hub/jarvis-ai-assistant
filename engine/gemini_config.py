@@ -1,7 +1,7 @@
 # Gemini API Configuration
 # Get your free API key from: https://makersuite.google.com/app/apikey
 
-GEMINI_API_KEY = "AIzaSyAzKFXQh9FN-KzkYK8ZEnTwbPsz9oyw0xw"
+GEMINI_API_KEY = "api"
 
 # Instructions:
 # 1. Go to https://makersuite.google.com/app/apikey

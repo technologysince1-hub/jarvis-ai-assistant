@@ -14,7 +14,7 @@ C:\platform-tools\adb.exe connect %ip%
 @echo off
 
 rem Set the IP address of your Android device
-set DEVICE_IP=192.0.0.2
+set DEVICE_IP=add mobole ip
 
 rem Set the port number for ADB
 set ADB_PORT=5555
