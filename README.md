@@ -404,8 +404,7 @@ copies or substantial portions of the Software.
 - **Contributors**: For code contributions and improvements
 
 ### Inspiration
-Inspired by the fictional JARVIS AI from Marvel's Iron Man series, this project aims to bring advanced AI assistance to everyday computing.
-
+Inspired by the fictional JARVIS AI from Marvel's Iron Man series, this project aims to bring advanced AI assistance to everyday computing.Hridoye 
 ---
 
 ## 📞 Support
