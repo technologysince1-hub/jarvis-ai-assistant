@@ -420,3 +420,4 @@ For support, questions, or feature requests:
 **Made with ❤️ by the JARVIS AI Team**
 
 *"Sometimes you gotta run before you can walk." - Tony Stark*
+my device install 
